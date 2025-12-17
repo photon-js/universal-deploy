@@ -10,6 +10,7 @@
     "test:types": "tsc --noEmit"
   },
   "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.18.0",
     "@universal-deploy/e2e": "workspace:",
     "playwright": "^1.57.0",
     "typescript": "^5.9.3",

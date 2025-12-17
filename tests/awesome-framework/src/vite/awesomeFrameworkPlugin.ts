@@ -65,17 +65,19 @@ export function awesomeFrameworkPlugin(): Plugin[] {
           return html;
         },
       },
-      configureServer(devServer) {
-        server = devServer;
+      configureServer: {
+        order: "pre",
+        handler(devServer) {
+          server = devServer;
+        },
       },
       async load(id) {
         if (id === "index.html") {
           return renderUrl("/");
         }
         if (id === virtualIndexSsr) {
-          if (this.environment.config.command === "serve") {
-            // biome-ignore lint/style/noNonNullAssertion: always exists in dev
-            await server!.transformIndexHtml("/", renderUrl("/"));
+          if (this.environment.config.command === "serve" && server) {
+            await server.transformIndexHtml("/", renderUrl("/"));
           }
           return `export default ${JSON.stringify(clientHtml)};`;
         }

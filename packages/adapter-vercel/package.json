@@ -16,12 +16,7 @@
     "build": "tsdown",
     "test:types": "tsc --noEmit"
   },
-  "dependencies": {
-    "@cloudflare/vite-plugin": "^1.18.0",
-    "@universal-middleware/cloudflare": "^0.4.10"
-  },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20251217.0",
     "tsdown": "^0.18.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.0"

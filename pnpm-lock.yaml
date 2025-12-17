@@ -39,6 +39,9 @@ importers:
         specifier: ^4.11.1
         version: 4.11.1
     devDependencies:
+      '@cloudflare/vite-plugin':
+        specifier: ^1.18.0
+        version: 1.18.0(vite@7.3.0(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2))(workerd@1.20251213.0)(wrangler@4.55.0(@cloudflare/workers-types@4.20251217.0))
       '@universal-deploy/e2e':
         specifier: 'workspace:'
         version: link:../../tests/e2e
@@ -232,17 +235,7 @@ importers:
         version: 7.3.0(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2)
 
   packages/adapter-vercel:
-    dependencies:
-      '@cloudflare/vite-plugin':
-        specifier: ^1.18.0
-        version: 1.18.0(vite@7.3.0(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2))(workerd@1.20251213.0)(wrangler@4.55.0(@cloudflare/workers-types@4.20251217.0))
-      '@universal-middleware/cloudflare':
-        specifier: ^0.4.10
-        version: 0.4.10(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(srvx@0.9.8)
     devDependencies:
-      '@cloudflare/workers-types':
-        specifier: ^4.20251217.0
-        version: 4.20251217.0
       tsdown:
         specifier: ^0.18.0
         version: 0.18.0(typescript@5.9.3)
@@ -2576,9 +2569,6 @@ packages:
   '@typescript-eslint/visitor-keys@8.50.0':
     resolution: {integrity: sha512-Xzmnb58+Db78gT/CCj/PVCvK+zxbnsw6F+O1oheYszJbBSdEjVhQi3C/Xttzxgi/GLmpvOggRs1RFpiJ8+c34Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@universal-middleware/cloudflare@0.4.10':
-    resolution: {integrity: sha512-ZY+N0KKoH+H+BB3wsaD5yqTiiFtX7uklPyCBqGLqEijOtZA5ZgFIExfWDjiIUjezUBAbRB8kUZ/WlPITY+hyTg==}
 
   '@universal-middleware/core@0.4.13':
     resolution: {integrity: sha512-k2zv5/zLWPUBxIZp/QTxkiVkG4EyqO+X6ABszBKg8ZmZpTp5ljd8uiIWdnMpSDDIN72R99RxtaMi0/vXNB75/w==}
@@ -5715,7 +5705,8 @@ snapshots:
   '@cloudflare/workerd-windows-64@1.20251213.0':
     optional: true
 
-  '@cloudflare/workers-types@4.20251217.0': {}
+  '@cloudflare/workers-types@4.20251217.0':
+    optional: true
 
   '@colors/colors@1.6.0': {}
 
@@ -7523,20 +7514,6 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.50.0
       eslint-visitor-keys: 4.2.1
-
-  '@universal-middleware/cloudflare@0.4.10(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(srvx@0.9.8)':
-    dependencies:
-      '@universal-middleware/core': 0.4.13(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(srvx@0.9.8)
-    transitivePeerDependencies:
-      - '@cloudflare/workers-types'
-      - '@hattip/core'
-      - '@types/express'
-      - '@webroute/route'
-      - elysia
-      - fastify
-      - h3
-      - hono
-      - srvx
 
   '@universal-middleware/core@0.4.13(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(srvx@0.9.8)':
     dependencies:
