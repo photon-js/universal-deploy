@@ -1,0 +1,18 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": true,
+  "fixed": [],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": [
+    "awesome-framework",
+    "@universal-deploy/e2e",
+    "app-cloudflare",
+    "app-netlify",
+    "app-node",
+    "app-tanstack-start"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["./node_modules/@vikejs/biome-config/config.json"],
+  "files": {
+    "includes": [
+      "**",
+      "!**/.vercel",
+      "!**/.wrangler",
+      "!**/.tanstack",
+      "!**/*.gen.ts",
+      "!**/worker-configuration.d.ts",
+      "!**/lib.deno.d.ts"
+    ]
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["examples/**"],
+      "linter": {
+        "rules": {
+          "a11y": "off",
+          "suspicious": {
+            "noArrayIndexKey": "off"
+          }
+        },
+        "domains": {
+          "react": "recommended"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+packages:
+  - packages/*
+  - examples/*
+  - tests/*
+
+linkWorkspacePackages: true
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - esbuild
+  - sharp
+  - workerd
+
+preferWorkspacePackages: true

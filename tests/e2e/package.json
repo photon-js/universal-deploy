@@ -1,0 +1,27 @@
+{
+  "name": "@universal-deploy/e2e",
+  "private": true,
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.57.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.3",
+    "playwright": "^1.57.0",
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+    "./config": "./dist/playwright.config.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "packageManager": "pnpm@10.24.0"
+}

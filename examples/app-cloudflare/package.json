@@ -1,0 +1,24 @@
+{
+  "name": "app-cloudflare",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "pnpm run build && vite preview",
+    "test:e2e": "playwright test",
+    "test:types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@universal-deploy/e2e": "workspace:",
+    "playwright": "^1.57.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0",
+    "wrangler": "^4.55.0"
+  },
+  "dependencies": {
+    "@universal-middleware/core": "^0.4.13",
+    "awesome-framework": "0.0.0",
+    "hono": "^4.11.1"
+  }
+}

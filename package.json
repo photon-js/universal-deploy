@@ -1,0 +1,46 @@
+{
+  "scripts": {
+    "========= Build": "",
+    "build": "pnpm --recursive run build",
+    "========= Test": "",
+    "test": "test-e2e && pnpm -r --workspace-concurrency=1 test:e2e",
+    "test:types": "pnpm -r test:types",
+    "========= Docs": "",
+    "// Develop website https://photonjs.dev locally": "",
+    "docs": "cd docs/ && pnpm run dev",
+    "// Build website for production": "",
+    "docs:build": "cd docs/ && pnpm run build",
+    "// Test website (CI)": "",
+    "docs:test": "cd docs/ && test-e2e",
+    "========= Formatting": "",
+    "format": "biome check --write .",
+    "format:check": "biome check .",
+    "========= Reset": "",
+    "reset": "git clean -Xdf && pnpm install && pnpm run build",
+    "========= Only allow pnpm; forbid yarn & npm": "",
+    "preinstall": "npx only-allow pnpm",
+    "========= Release": "",
+    "release": "pnpm run build:photon && changeset version && pnpm i && pnpm publish -r --no-git-checks",
+    "release:beta": "changeset pre enter beta && changeset version && pnpm publish -r --no-git-checks --tag beta"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.9",
+    "@brillout/test-e2e": "^0.6.21",
+    "@changesets/cli": "^2.29.8",
+    "@vikejs/biome-config": "^2.0.1",
+    "playwright": "^1.57.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/node": "^22.19.3"
+    },
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "esbuild",
+      "playwright-chromium",
+      "sharp",
+      "workerd"
+    ]
+  },
+  "packageManager": "pnpm@10.24.0"
+}

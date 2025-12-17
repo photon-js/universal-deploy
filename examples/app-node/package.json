@@ -1,0 +1,21 @@
+{
+  "name": "app-node",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test:e2e": "playwright test",
+    "test:types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@universal-deploy/e2e": "workspace:",
+    "@universal-deploy/node": "workspace:^",
+    "playwright": "^1.57.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0"
+  },
+  "dependencies": {
+    "awesome-framework": "0.0.0"
+  }
+}
