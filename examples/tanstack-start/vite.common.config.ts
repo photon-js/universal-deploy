@@ -1,8 +1,7 @@
-import { catchAll } from "@universal-deploy/store/catch-all";
-import { compat } from "@universal-deploy/store/compat";
 import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
+import { catchAll, compat } from "@universal-deploy/store/vite";
 import viteReact from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import viteTsConfigPaths from "vite-tsconfig-paths";

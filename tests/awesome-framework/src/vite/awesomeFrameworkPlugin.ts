@@ -1,5 +1,5 @@
 import type { Plugin, ViteDevServer } from "vite";
-import { renderUrl } from "../renderUrl";
+import { renderUrl } from "../renderUrl.js";
 
 const virtualIndex = "virtual:awesome-plugin:index.html";
 const virtualIndexSsr = "virtual:awesome-plugin:index-js";
@@ -74,6 +74,7 @@ export function awesomeFrameworkPlugin(): Plugin[] {
         }
         if (id === virtualIndexSsr) {
           if (this.environment.config.command === "serve") {
+            // biome-ignore lint/style/noNonNullAssertion: always exists in dev
             await server!.transformIndexHtml("/", renderUrl("/"));
           }
           return `export default ${JSON.stringify(clientHtml)};`;

@@ -6,7 +6,8 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
-    "./vite": "./dist/vite.js"
+    "./vite": "./dist/vite.js",
+    "./utils": "./dist/utils.js"
   },
   "scripts": {
     "dev": "tsdown --watch",

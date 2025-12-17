@@ -8,6 +8,7 @@ const commonOptions: TsdownOptions = {
   treeshake: true,
   nodeProtocol: true,
   fixedExtension: false,
+  external: ["virtual:awesome-plugin:index-js"],
 };
 
 export default defineConfig([
@@ -15,9 +16,10 @@ export default defineConfig([
     ...commonOptions,
     platform: "neutral",
     entry: {
-      index: "./src/index.ts",
       vite: "./src/vite/index.ts",
-      utils: "./src/utils.ts",
+      "entries/standalone": "./src/entries/standalone.ts",
+      "entries/api": "./src/entries/api.ts",
+      "entries/ssr": "./src/entries/ssr.ts",
     },
   },
 ]);

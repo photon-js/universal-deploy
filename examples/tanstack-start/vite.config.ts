@@ -1,4 +1,4 @@
-import { node } from "@photonjs/node/vite";
+import { node } from "@universal-deploy/node/vite";
 import config from "./vite.common.config";
 
 config.plugins ??= [];

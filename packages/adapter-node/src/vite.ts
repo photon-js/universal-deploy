@@ -15,7 +15,7 @@ export function node(): Plugin[] {
           id: re_photonNode,
         },
         async handler(id, importer) {
-          const resolved = await this.resolve("@photonjs/node/serve", importer);
+          const resolved = await this.resolve("@universal-deploy/node/serve", importer);
           if (!resolved) {
             throw new Error(`Cannot find server entry ${JSON.stringify(id)}`);
           }

@@ -23,7 +23,8 @@ export function universalDeployPlugin(): Plugin[] {
           },
           {
             id: "awesome-framework/ssr",
-            pattern: "/:slug*",
+            // FIXME URLPatternInit
+            pattern: "/**",
           },
         );
       },

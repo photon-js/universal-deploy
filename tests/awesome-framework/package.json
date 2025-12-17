@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "tsdown"
   },
   "dependencies": {
     "@universal-deploy/store": "workspace:^",
@@ -15,23 +15,15 @@
   },
   "devDependencies": {
     "@types/node": "^22.19.3",
+    "tsdown": "^0.18.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.0"
   },
   "exports": {
-    ".": "./dist/vite/index.js",
-    "./vite": "./dist/vite/index.js",
+    ".": "./dist/vite.js",
+    "./vite": "./dist/vite.js",
     "./standalone": "./dist/entries/standalone.js",
     "./api": "./dist/entries/api.js",
-    "./ssr": "./dist/entries/ssr.js",
-    "./catch-all": {
-      "types": "./dist/entries/catch-all.d.js",
-      "deno": "./dist/entries/catch-all-node.js",
-      "bun": "./dist/entries/catch-all-node.js",
-      "workerd": "./dist/entries/catch-all.js",
-      "browser": "./dist/entries/catch-all.js",
-      "node": "./dist/entries/catch-all-node.js",
-      "default": "./dist/entries/catch-all.js"
-    }
+    "./ssr": "./dist/entries/ssr.js"
   }
 }

@@ -1,6 +1,6 @@
 import { enhance, pipe } from "@universal-middleware/core";
 import { createHandler } from "@universal-middleware/srvx";
-import { loggerMiddleware } from "./logger";
+import { loggerMiddleware } from "./logger.js";
 
 export const apiMiddleware = enhance(
   () => {

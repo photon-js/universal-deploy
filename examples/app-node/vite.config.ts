@@ -1,4 +1,4 @@
-import { node } from "@photonjs/node/vite";
+import { node } from "@universal-deploy/node/vite";
 import { awesomeFramework } from "awesome-framework/vite";
 import { defineConfig } from "vite";
 

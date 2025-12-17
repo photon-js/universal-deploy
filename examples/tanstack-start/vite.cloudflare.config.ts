@@ -1,4 +1,4 @@
-import { cloudflare } from "@photonjs/cloudflare/vite";
+import { cloudflare } from "@cloudflare/vite-plugin";
 import config from "./vite.common.config";
 
 config.plugins ??= [];
@@ -6,6 +6,9 @@ config.plugins ??= [];
 config.plugins.push(
   cloudflare({
     inspectorPort: false,
+    viteEnvironment: {
+      name: "ssr",
+    },
   }),
 );
 

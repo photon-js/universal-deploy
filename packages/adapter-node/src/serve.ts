@@ -1,11 +1,10 @@
-// Resolves to catchAllEntry
-import userServerEntry from "virtual:photon:server-entry";
+import userServerEntry from "virtual:photon:catch-all";
+import { assertFetchable } from "@universal-deploy/store/utils";
 import sirv from "@universal-middleware/sirv/srvx";
 import { serve as serveSrvx } from "srvx";
-import { assertServerEntry } from "./utils.js";
 
 function startServer() {
-  assertServerEntry(userServerEntry);
+  assertFetchable(userServerEntry, "virtual:photon:catch-all");
 
   return serveSrvx({
     ...userServerEntry,
