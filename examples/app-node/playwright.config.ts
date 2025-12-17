@@ -1,1 +1,1 @@
-export { default } from "e2e/config";
+export { default } from "@universal-deploy/e2e/config";
