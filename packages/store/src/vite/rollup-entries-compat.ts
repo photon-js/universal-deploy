@@ -1,6 +1,6 @@
 import type { Plugin } from "vite";
-import { store } from "./index.js";
-import { dependsOn } from "./utils.js";
+import { store } from "../index.js";
+import { dependsOn } from "../utils.js";
 
 let added = false;
 

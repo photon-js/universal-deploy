@@ -1,6 +1,6 @@
 import { createMiddleware } from "@universal-middleware/express";
 import type { Environment, Plugin, RunnableDevEnvironment } from "vite";
-import { catchAllEntry } from "./index.js";
+import { catchAllEntry } from "../index.js";
 
 // Vite's isRunnableDevEnvironment isn't reliable when multiple Vite versions are installed
 export function isRunnableDevEnvironment(environment: Environment): environment is RunnableDevEnvironment {

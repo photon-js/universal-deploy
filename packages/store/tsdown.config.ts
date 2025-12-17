@@ -16,9 +16,7 @@ export default defineConfig([
     platform: "neutral",
     entry: {
       index: "./src/index.ts",
-      "catch-all": "./src/catch-all.ts",
-      compat: "./src/rollup-entries-compat.ts",
-      "dev-server": "./src/dev-server.ts",
+      vite: "./src/vite/index.ts",
     },
   },
 ]);

@@ -1,6 +1,5 @@
 import { store } from "@universal-deploy/store";
-import { catchAll } from "@universal-deploy/store/catch-all";
-import { devServer } from "@universal-deploy/store/dev-server";
+import { catchAll, devServer } from "@universal-deploy/store/vite";
 import type { Plugin } from "vite";
 
 // The vite config file can be loaded multiple times (once per env + 1),

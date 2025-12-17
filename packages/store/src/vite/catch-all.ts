@@ -1,8 +1,8 @@
 import { addRoute, createRouter } from "rou3";
 import { compileRouterToString } from "rou3/compiler";
 import type { Plugin } from "vite";
-import { catchAllId } from "./const.js";
-import { catchAllEntry } from "./index.js";
+import { catchAllId } from "../const.js";
+import { catchAllEntry, store } from "../index.js";
 
 // A virtual module aggregating all routes defined in the store
 const re_catchAll = /^virtual:photon:catch-all$/;
