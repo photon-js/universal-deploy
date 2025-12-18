@@ -12,11 +12,11 @@ export interface EntryMeta {
    */
   method?: HttpMethod | HttpMethod[];
   /**
-   * Route pattern for this entry.
+   * Route pattern(s) for this entry.
    *
    * Adheres to the {@link https://developer.mozilla.org/en-US/docs/Web/API/URLPattern | URLPattern API}.
    */
-  pattern: URLPatternInput;
+  pattern: URLPatternInput | URLPatternInput[];
   /**
    * The Vite environment this entry belongs to.
    *
