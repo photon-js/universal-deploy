@@ -19,8 +19,11 @@ export function awesomeFrameworkPlugin(): Plugin[] {
             async buildApp(builder) {
               // biome-ignore lint/style/noNonNullAssertion: exists
               await builder.build(builder.environments.client!);
-              // biome-ignore lint/style/noNonNullAssertion: exists
-              await builder.build(builder.environments.ssr!);
+
+              if (builder.environments.ssr?.config.build.rollupOptions.input) {
+                // biome-ignore lint/style/noNonNullAssertion: exists
+                await builder.build(builder.environments.ssr!);
+              }
             },
           },
         };

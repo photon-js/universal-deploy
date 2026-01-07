@@ -9,24 +9,27 @@ export function universalDeployPlugin(): Plugin[] {
   return [
     {
       name: "awesome-framework:universal-deploy",
-      config() {
-        if (injected) return;
-        injected = true;
-        store.entries.push(
-          {
-            id: "awesome-framework/standalone",
-            pattern: "/standalone",
-          },
-          {
-            id: "awesome-framework/api",
-            pattern: "/api",
-          },
-          {
-            id: "awesome-framework/ssr",
-            // FIXME URLPatternInit
-            pattern: "/**",
-          },
-        );
+      config: {
+        order: "pre",
+        handler() {
+          if (injected) return;
+          injected = true;
+          store.entries.push(
+            {
+              id: "awesome-framework/standalone",
+              pattern: "/standalone",
+            },
+            {
+              id: "awesome-framework/api",
+              pattern: "/api",
+            },
+            {
+              id: "awesome-framework/ssr",
+              // FIXME URLPatternInit
+              pattern: "/**",
+            },
+          );
+        },
       },
     },
     // Forwards request to server entries from a vite dev server middleware
