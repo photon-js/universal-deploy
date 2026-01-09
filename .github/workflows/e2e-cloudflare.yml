@@ -14,22 +14,27 @@ jobs:
       - run: pnpm run build
       - run: pnpm run build
         working-directory: examples/app-cloudflare
-      - name: Deploy
-        id: deploy
-        uses: cloudflare/wrangler-action@v3
+      - name: Get Cloudflare Preview URL
+        uses: zentered/cloudflare-preview-url@v1
+        id: cloudflare_preview_url
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: versions upload
-          workingDirectory: examples/app-cloudflare
+          cloudflare_project_id: 'universal-deploy'
+          wait_until_ready: true
       - name: Print deployment url
         run: |
+          if [ -z "$BASE_URL" ]; then
+            echo "Error: deployment-url is not defined or empty"
+            exit 1
+          fi
           echo "Deployment URL: $BASE_URL"
         env:
-          BASE_URL: ${{ steps.deploy.outputs.deployment-url }}
+          BASE_URL: ${{ steps.cloudflare_preview_url.outputs.preview_url }}
       - name: Test e2e deployed
         run: pnpm test:e2e
         working-directory: examples/app-cloudflare
         env:
-          BASE_URL: ${{ steps.deploy.outputs.deployment-url }}
+          BASE_URL: ${{ steps.cloudflare_preview_url.outputs.preview_url }}
           NODE_ENV: production

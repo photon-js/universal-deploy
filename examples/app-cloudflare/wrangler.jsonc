@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "app-cloudflare",
+  "name": "universal-deploy",
   "compatibility_date": "2025-09-02",
   "preview_urls": true,
   // Points to the virtual catch‑all entry registered by the compat plugin,
