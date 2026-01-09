@@ -15,7 +15,7 @@ jobs:
       - run: pnpm run build
         working-directory: examples/app-cloudflare
       - name: Get Cloudflare Preview URL
-        uses: zentered/cloudflare-preview-url@v1
+        uses: zentered/cloudflare-preview-url@v2
         id: cloudflare_preview_url
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
