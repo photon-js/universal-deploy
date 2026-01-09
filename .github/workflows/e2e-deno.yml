@@ -23,4 +23,5 @@ jobs:
         working-directory: examples/app-node
         env:
           RUN_CMD: deno run -A dist/server/index.js
+          BASE_URL: http://127.0.0.1:3000
           NODE_ENV: production
