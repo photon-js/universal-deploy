@@ -48,7 +48,9 @@ export function node(): Plugin[] {
             },
             resolve: {
               // Ensure that all native node modules start with `node:`, mostly for Deno compat
-              alias: Object.fromEntries(builtinModules.map((m) => [m, `node:${m}`])),
+              alias: Object.fromEntries(
+                builtinModules.filter((m) => !m.startsWith("node:")).map((m) => [m, `node:${m}`]),
+              ),
             },
           };
         },
