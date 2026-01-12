@@ -1,7 +1,3 @@
-TODO:
-- add readme to each examples/* explaining what it's showing exactly (at first I was looking for a server entry but I finally realized that the server is implemented by `awesomeFramework`. So I guess explain that the mininal examples show how AwesomeFramework is deployed.
-- Show how AwesomeFramework integrates with UD?
-
 # universal-deploy
 
 **Deploy your Vite app anywhere.**
@@ -45,10 +41,6 @@ The following Vite plugins help frameworks and deployment providers to works wit
 - **[`catchAll`](./packages/store/src/vite/catch-all.ts)**: Utility plugin that aggregates and routes all global store entries behind a unique entry. Used by `devServer`, `compat` and node target
 
 ### Adapters
-
-TODO:
-- Explain the goal of the `@universal-deploy` packages. They are temporary, very important.
-- Add link to `vite-plugin-vercel@beta` ?
 
 Here are some temporary packages that demonstrate how deployment plugins can integrate `@universal-deploy/store`.
 Packages like `@universal-deploy/netlify` will no longer be required once directly supported by Vite deployment plugins (e.g. `@netlify/vite-plugin`).
