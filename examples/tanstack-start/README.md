@@ -11,7 +11,7 @@ The app can be deployed to:
 
 ### How it works
 
-TODO: explain that is the the minimal interface between TanStack Start and UD. This is temporary until TanStack adopts UD.
+Here 2 plugins are added to bridge the gap between TanStack Start and universal-deploy. Those will not be required when TanStack Start adopts universal-deploy:
 
 - **[compat](./vite.common.config.ts)**: Extracts the server entry from `rollupOptions.input` and registers it in the global store
 - **[catchAll](./vite.common.config.ts)**: Required by the `compat` plugin (see [store/README.md](/packages/store/README.md#catchall) for details)

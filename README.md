@@ -1,7 +1,6 @@
 TODO:
-- add readme to each examples/* expaining what it's showing exactly (at first I was looking for a server entry but I finally realized that the server is implemented by `awesomeFramework`. So I guess explain that the mininal examples show how AwesomeFramework is deployed.
+- add readme to each examples/* explaining what it's showing exactly (at first I was looking for a server entry but I finally realized that the server is implemented by `awesomeFramework`. So I guess explain that the mininal examples show how AwesomeFramework is deployed.
 - Show how AwesomeFramework integrates with UD?
-- I don't see where https://github.com/photon-js/universal-deploy/tree/main/examples/app-vercel/src/middlewares are being imported? I guess a readme is really needed here.
 
 # universal-deploy
 
@@ -9,9 +8,9 @@ TODO:
 
 ## Goal
 
-As discussed at [Netlify's RFC](https://github.com/vitejs/vite/discussions/20907), this project aims to... TODO: explain vision: what is the goal here? From the perspective of a user, framework, and deployment provider. Just a little paragraph.
-
-TODO: say (or even better explain) that it's minimal
+As discussed at [Netlify's RFC](https://github.com/vitejs/vite/discussions/20907), this POC aims to solve the issue pinpointed by point 3, i.e. "Routing metadata".
+Mostly, how can a deployment target (Netlify, Cloudflare, Node, etc.) find and use the different server entries defined by a framework (or user)?
+This POC demonstrates that we can solve this issue with a minimal API.
 
 ## Features
 
@@ -39,16 +38,11 @@ See the [store documentation](./packages/store/README.md) for full API details.
 
 ### Plugins
 
-Comments:
-- I don't understand `devServer` — it doesn't feel minimal.
-- Not sure I understand why `catchAll` and `compat` are plugins. A plugin system sounds complicated, not minimal.
-- Maybe the trick is to mention that all the "plugin system" are temporary (we aren't sure where code will end up living at)
-- Or, at least, maybe we don't use the word "plugin" but "modules" instead.
-- Or, we just remove this section...
+The following Vite plugins help frameworks and deployment providers to works with the global entries store.
 
-- **[`catchAll`](./packages/store/src/vite/catch-all.ts)**: Aggregates server entries into a single `virtual:ud:catch-all` module
-- **[`devServer`](./packages/store/src/vite/dev-server.ts)**: Handles routing and HTML transforms during development
+- **[`devServer`](./packages/store/src/vite/dev-server.ts)**: Can be used by a framework during development to route requests to the entries defined in the global store
 - **[`compat`](./packages/store/src/vite/rollup-entries-compat.ts)**: Auto-registers SSR rollup entries in the store (for Vite-based frameworks that didn't adopt `universal-deploy` yet)
+- **[`catchAll`](./packages/store/src/vite/catch-all.ts)**: Utility plugin that aggregates and routes all global store entries behind a unique entry. Used by `devServer`, `compat` and node target
 
 ### Adapters
 
@@ -56,11 +50,12 @@ TODO:
 - Explain the goal of the `@universal-deploy` packages. They are temporary, very important.
 - Add link to `vite-plugin-vercel@beta` ?
 
-Adapters handle platform-specific deployment:
+Here are some temporary packages that demonstrate how deployment plugins can integrate `@universal-deploy/store`.
+Packages like `@universal-deploy/netlify` will no longer be required once directly supported by Vite deployment plugins (e.g. `@netlify/vite-plugin`).
 
 - **[`@universal-deploy/node`](./packages/adapter-node)** (Node.js, Bun, Deno)
 - **[`@universal-deploy/netlify`](./packages/adapter-netlify)**
-- **`vite-plugin-vercel@beta`** (uses Vercel build output API)
+- **[`vite-plugin-vercel@beta`](https://github.com/magne4000/vite-plugin-vercel/pull/207)** (uses Vercel build output API)
 - **`@cloudflare/vite-plugin`** (already compatible)
 
 ## Examples
