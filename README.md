@@ -4,46 +4,77 @@ Deploy your Vite applications everywhere with a unified set of adapters.
 
 ## Features
 
-- **Unified Adapters**: One way to target multiple deployment platforms.
-- **Vite Integration**: Seamlessly works as Vite plugins.
-- **Support for Major Platforms**: Node.js, Vercel, Netlify, Cloudflare, and more.
+- **Unified Adapters**: Deploy to multiple platforms (Node.js, Vercel, Netlify, Cloudflare) with a consistent API
+- **Global Store**: Centralized registry for managing server entries and routing ([`@universal-deploy/store`](./packages/store))
+- **Universal Routing**: Route matching using the [URLPattern API](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern)
+- **Framework Agnostic**: Works with any Vite-based framework
+- **Development Support**: Built-in dev server middleware with HTML transformations
 
-## Installation
+## Quick Start
 
 ```bash
-pnpm add -D @universal-deploy/node # or any other adapter
+# Install an adapter
+pnpm add -D @universal-deploy/node
 ```
 
-## Usage
-
-Add the adapter to your `vite.config.ts`:
-
 ```typescript
+// vite.config.ts
 import { node } from "@universal-deploy/node/vite";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [
-    node(),
-    // ... other plugins
-  ],
+  plugins: [node()],
 });
 ```
 
-## Supported Adapters
+## Core Concepts
 
-- `@universal-deploy/node`: For Node.js, Bun, and Deno environments.
-- `@universal-deploy/vercel`: Built-in support for Vercel.
-- `@universal-deploy/netlify`: Built-in support for Netlify.
-- `@universal-deploy/cloudflare`: Support for Cloudflare Pages/Workers.
+### Store
+
+The [`@universal-deploy/store`](./packages/store) provides a global registry for server entries with routing:
+
+```js
+import { store } from "@universal-deploy/store";
+
+store.entries.push({
+  id: "./src/server/api.ts",
+  pattern: "/api/*",
+  method: "GET",
+});
+```
+
+See the [store documentation](./packages/store/README.md) for full API details.
+
+### Plugins
+
+- **`catchAll`**: Aggregates store entries into a single `virtual:ud:catch-all` module
+- **`devServer`**: Handles routing and HTML transforms during development
+- **`compat`**: Auto-registers SSR rollup entries in the store
+
+### Adapters
+
+Adapters handle platform-specific deployment:
+
+- **[`@universal-deploy/node`](./packages/adapter-node)**: Node.js, Bun, Deno ([README](./packages/adapter-node/README.md))
+- **[`@universal-deploy/netlify`](./packages/adapter-netlify)**: Netlify deployments ([README](./packages/adapter-netlify/README.md))
+- **`@universal-deploy/vercel`**: Vercel build output API
+- **`@universal-deploy/cloudflare`**: Cloudflare Pages/Workers
 
 ## Examples
 
-Check out the `examples/` directory for implementation details with various frameworks:
+Explore deployment patterns in the [`examples/`](./examples) directory:
 
-- `tanstack-start`: TanStack Start with Vercel and Node.js.
-- `app-node`: Minimal Node.js setup.
-- `app-vercel`: Minimal Vercel setup.
+- **[`tanstack-start`](./examples/tanstack-start)**: Multi-platform TanStack Start app with compat plugin ([README](./examples/tanstack-start/README.md))
+- **Minimal setups**: [`app-node`](./examples/app-node), [`app-vercel`](./examples/app-vercel), [`app-netlify`](./examples/app-netlify), [`app-cloudflare`](./examples/app-cloudflare)
+
+## Development
+
+```bash
+pnpm install    # Install dependencies
+pnpm build      # Build packages
+pnpm test       # Run tests
+pnpm format     # Format code
+```
 
 ## License
 
