@@ -1,4 +1,4 @@
-Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deployed on Cloudflare Workers.
+Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deployed with Node.js/Bun/Deno.
 
 ### How it works
 

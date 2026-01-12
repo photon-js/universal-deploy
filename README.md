@@ -56,8 +56,12 @@ Already compatible:
 
 ## Examples
 
-- **[`examples/tanstack-start`](./examples/tanstack-start)**: TanStack Start app deployed to Netlify, Cloudflare, Vercel, or Node.js/Bun/Deno.
-- **Minimal examples**: [`examples/app-node`](./examples/app-node), [`examples/app-vercel`](./examples/app-vercel), [`examples/app-netlify`](./examples/app-netlify), [`examples/app-cloudflare`](./examples/app-cloudflare)
+- [`examples/tanstack-start`](./examples/tanstack-start): TanStack Start app deployed to Netlify, Cloudflare, Vercel, or Node.js/Bun/Deno.
+- Minimal examples:
+  - [`examples/app-node`](./examples/app-node)
+  - [`examples/app-vercel`](./examples/app-vercel)
+  - [`examples/app-netlify`](./examples/app-netlify)
+  - [`examples/app-cloudflare`](./examples/app-cloudflare)
 
 ## License
 

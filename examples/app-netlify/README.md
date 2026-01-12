@@ -1,4 +1,4 @@
-Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deployed on Cloudflare Workers.
+Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deployed to Netlify.
 
 ### How it works
 
