@@ -1,6 +1,6 @@
 # universal-deploy
 
-**Deploying Vite apps anywhere.**
+*Deploying Vite apps anywhere.*
 
 ## Goal
 
@@ -51,8 +51,8 @@ Packages like `@universal-deploy/netlify` will no longer be required once direct
 
 Already compatible:
 
-- **[`vite-plugin-vercel@beta`](https://github.com/magne4000/vite-plugin-vercel/pull/207)**
 - **`@cloudflare/vite-plugin`**
+- **[`vite-plugin-vercel@beta`](https://github.com/magne4000/vite-plugin-vercel/pull/207)**
 
 ## Examples
 
