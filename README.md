@@ -4,7 +4,7 @@
 
 ## Goal
 
-As discussed at [Netlify's RFC](https://github.com/vitejs/vite/discussions/20907), this POC aims to solve the issue pinpointed by point 1 and 3, i.e. "Routing metadata".
+As discussed at [Netlify's RFC](https://github.com/vitejs/vite/discussions/20907), this POC aims to solve the issue pinpointed by point 1 and 3, i.e. "Server entry point location" and "Routing metadata".
 Mostly, how can a deployment target (Netlify, Cloudflare, Node, etc.) find and use the different server entries defined by a framework (or user)?
 
 This POC demonstrates that we can solve this issue with a minimal API.
