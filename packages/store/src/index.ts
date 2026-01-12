@@ -8,4 +8,4 @@ const storeSymbol = Symbol.for("photon:store");
 // biome-ignore lint/suspicious/noExplicitAny: cast
 export const store: Store = (globalThis as any)[storeSymbol];
 
-export const catchAllEntry = "virtual:photon:catch-all" as const;
+export const catchAllEntry = "virtual:ud:catch-all" as const;

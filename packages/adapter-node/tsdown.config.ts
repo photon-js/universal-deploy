@@ -8,7 +8,7 @@ const commonOptions: TsdownOptions = {
   treeshake: true,
   nodeProtocol: true,
   fixedExtension: false,
-  external: ["virtual:photon:catch-all"],
+  external: ["virtual:ud:catch-all"],
 };
 
 export default defineConfig([

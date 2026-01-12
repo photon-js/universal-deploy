@@ -5,7 +5,7 @@ import { catchAllId } from "../const.js";
 import { catchAllEntry, store } from "../index.js";
 
 // A virtual module aggregating all routes defined in the store
-const re_catchAll = /^virtual:photon:catch-all$/;
+const re_catchAll = /^virtual:ud:catch-all$/;
 // Resolves to catchAllEntry
 const re_photonServer = /^virtual:photon:server-entry$/;
 
@@ -55,7 +55,7 @@ export function catchAll(): Plugin {
         }
         if (duplicates.size > 0) {
           console.warn(
-            `\nDuplicate entries detected in virtual:photon:catch-all. \nDuplicates:\n - ${Array.from(duplicates.values()).join("\n - ")}`,
+            `\nDuplicate entries detected in virtual:ud:catch-all. \nDuplicates:\n - ${Array.from(duplicates.values()).join("\n - ")}`,
           );
         }
 
