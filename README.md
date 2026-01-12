@@ -41,7 +41,7 @@ Adapters handle platform-specific deployment:
 - **[`@universal-deploy/node`](./packages/adapter-node)**: Node.js, Bun, Deno ([README](./packages/adapter-node/README.md))
 - **[`@universal-deploy/netlify`](./packages/adapter-netlify)**: Netlify deployments ([README](./packages/adapter-netlify/README.md))
 - **`vite-plugin-vercel@beta`**: Vercel build output API
-- **`@universal-deploy/cloudflare`**: Cloudflare Pages/Workers
+- **`@cloudflare/vite-plugin`**: Already compatible through `wrangler.jsonc`
 
 ## Examples
 
