@@ -5,10 +5,12 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "dev:cloudflare": "vite dev --port 3000 -c vite.cloudflare.config.ts",
+    "dev:netlify": "vite dev --port 3000 -c vite.netlify.config.ts",
     "build": "vite build",
     "preview": "vite build && node dist/server/index.js",
     "preview:cloudflare": "vite build -c vite.cloudflare.config.ts && vite preview -c vite.cloudflare.config.ts",
-    "build:vercel": "vite build -c vite.vercel.config.ts"
+    "build:vercel": "vite build -c vite.vercel.config.ts",
+    "build:netlify": "vite build -c vite.netlify.config.ts"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -18,6 +20,7 @@
     "@tanstack/react-router-ssr-query": "^1.146.2",
     "@tanstack/react-start": "^1.146.3",
     "@tanstack/router-plugin": "^1.146.3",
+    "@universal-deploy/netlify": "workspace:^",
     "@universal-deploy/node": "workspace:^",
     "@universal-deploy/store": "workspace:^",
     "lucide-react": "^0.554.0",

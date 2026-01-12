@@ -12,3 +12,6 @@ count.txt
 .vinxi
 .vercel
 todos.json
+
+# Local Netlify folder
+.netlify
