@@ -1,4 +1,4 @@
-Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deployed on Cloudflare Workers.
+Minimal Vite app using [`awesome-framework`](/tests/awesome-framework) deployed on Cloudflare Workers.
 
 ### How it works
 

@@ -1,4 +1,4 @@
-Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deployed to Netlify.
+Minimal Vite app using [`awesome-framework`](/tests/awesome-framework) deployed to Netlify.
 
 ### How it works
 

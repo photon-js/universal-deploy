@@ -1,4 +1,4 @@
-Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deployed with Node.js/Bun/Deno.
+Minimal Vite app using [`awesome-framework`](/tests/awesome-framework) deployed with Node.js/Bun/Deno.
 
 ### How it works
 

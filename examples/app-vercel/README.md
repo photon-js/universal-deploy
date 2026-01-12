@@ -1,4 +1,4 @@
-Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deployed to Vercel.
+Minimal Vite app using [`awesome-framework`](/tests/awesome-framework) deployed to Vercel.
 
 ### How it works
 
