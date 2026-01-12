@@ -10,7 +10,7 @@ As discussed at [Netlify's RFC](https://github.com/vitejs/vite/discussions/20907
 
 - **Global Store**: Register server entries ([`@universal-deploy/store`](./packages/store))
 - **Universal Routing**: Route matching using [`URLPattern` standard](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern)
-- **Framework Agnostic**: Works with any Vite-based framework
+- **Convention**: Can be adopted by any Vite-based framework
 
 ## Core Concepts
 
