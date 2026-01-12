@@ -34,11 +34,11 @@ See the [store documentation](./packages/store/README.md) for full API details.
 
 ### Plugins
 
-The following Vite plugins help frameworks and deployment providers to works with the global entries store.
+The following Vite plugins help frameworks and deployment providers work with the global entries store.
 
 - **[`devServer`](./packages/store/src/vite/dev-server.ts)**: Can be used by a framework during development to route requests to the entries defined in the global store
 - **[`compat`](./packages/store/src/vite/rollup-entries-compat.ts)**: Auto-registers SSR rollup entries in the store (for Vite-based frameworks that didn't adopt `universal-deploy` yet)
-- **[`catchAll`](./packages/store/src/vite/catch-all.ts)**: Utility plugin that aggregates and routes all global store entries behind a unique entry. Used by `devServer`, `compat` and node target
+- **[`catchAll`](./packages/store/src/vite/catch-all.ts)**: Utility plugin that aggregates and routes all global store entries behind a unique entry. Used by `devServer`, `compat` and node target.
 
 ### Adapters
 
