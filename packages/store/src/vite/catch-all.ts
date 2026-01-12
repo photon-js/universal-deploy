@@ -71,13 +71,20 @@ const __map = {
 
 ${compiledFindRoute};
 
+function assertFetchable(mod) {
+  if (!mod || typeof mod !== "object") throw new Error("Missing default export");
+  if ("default" in mod && mod.default) mod = mod.default;
+  if (!mod || typeof mod !== "object" || !("fetch" in mod) || typeof mod.fetch !== "function")
+    throw new Error("Default export must include a { fetch() } function");
+  return mod;
+}
+
 export default {
   fetch(request) {
     const url = new URL(request.url);
     const key = findRoute("", url.pathname);
     if (!key || !key.data) return;
-    
-    return __map[key.data].fetch(request);
+    return assertFetchable(__map[key.data]).fetch(request);
   }
 }`;
         return code;
