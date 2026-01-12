@@ -1,10 +1,10 @@
 ## @universal-deploy/store
 
-This package provides a global `store` object for managing server entries.
+This package provides a global `store` object for registering server entries.
 ```js
 import { store } from "@universal-deploy/store";
 
-// Add entries to the store
+// Registering — add entries to the store
 store.entries.push(
   {
     id: "awesome-framework/standalone",
