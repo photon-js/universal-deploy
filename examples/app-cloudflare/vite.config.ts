@@ -10,6 +10,7 @@ export default defineConfig({
         name: "ssr",
       },
     }),
+    // Minimal SSR framework. Includes devServer and catchAll plugins from @universal-deploy/store
     awesomeFramework(),
   ],
 });

@@ -4,8 +4,9 @@ import { vercel } from "vite-plugin-vercel/vite";
 
 export default defineConfig({
   plugins: [
-    // Can be replaced by @universal-deploy/node/vite to target node/bun/deno instead
+    // Version of vite-plugin-vercel that reads entries from @universal-deploy/store
     vercel(),
+    // Minimal SSR framework. Includes devServer and catchAll plugins from @universal-deploy/store
     awesomeFramework(),
   ],
 });

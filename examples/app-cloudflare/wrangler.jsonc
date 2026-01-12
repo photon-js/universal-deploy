@@ -3,7 +3,6 @@
   "name": "universal-deploy",
   "compatibility_date": "2025-09-02",
   "preview_urls": true,
-  // Points to the virtual catch‑all entry registered by the compat plugin,
-  // which resolves to TanStack’s SSR server entry.
+  // Points to the virtual catch‑all entry defined by @universal-deploy/store.
   "main": "virtual:ud:catch-all"
 }

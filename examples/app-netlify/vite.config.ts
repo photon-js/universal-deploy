@@ -4,8 +4,9 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [
-    // Can be replaced by @universal-deploy/node/vite to target node/bun/deno instead
+    // re-exports @netlify/vite-plugin, and sets rollupOptions.input to virtual:ud:catch-all
     netlify(),
+    // Minimal SSR framework. Includes devServer and catchAll plugins from @universal-deploy/store
     awesomeFramework(),
   ],
 });
