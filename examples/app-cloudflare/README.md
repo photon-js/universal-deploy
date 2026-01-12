@@ -1,4 +1,4 @@
-Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deployed on Cloudflare Workers.
+Minimal Vite app using [`awesome-framework`](/tests/awesome-framework) deployed on Cloudflare Workers.
 
 ### How it works
 
@@ -8,4 +8,4 @@ Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deploye
 
 `awesome-framework` uses `@universal-deploy/store` to [declare its server entries](/tests/awesome-framework/src/vite/universalDeployPlugin.ts).
 
-Deployment on **Cloudflare** is done through [vite.config.ts](./vite.config.ts) and [wrangler.jsonc](./wrangler.jsonc).
+Deployment to **Cloudflare** is done through `@cloudflare/vite-plugin` (see [vite.config.ts](./vite.config.ts) and [wrangler.jsonc](./wrangler.jsonc)).

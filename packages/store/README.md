@@ -45,7 +45,7 @@ export interface EntryMeta {
 }
 ```
 
-### Included Plugins
+### Vite Plugins
 
 #### `catchAll`
 
