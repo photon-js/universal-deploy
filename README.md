@@ -2,9 +2,11 @@
 
 **Deploy your Vite app anywhere.**
 
-TODO: explain vision: what is the goal here? From the perspective of a user, framework, and deployment provider.
+## Goal
 
-As discussed at [Netlify's RFC](https://github.com/vitejs/vite/discussions/20907), this project aims to....
+As discussed at [Netlify's RFC](https://github.com/vitejs/vite/discussions/20907), this project aims to... TODO: explain vision: what is the goal here? From the perspective of a user, framework, and deployment provider.
+
+TODO: explain that it's the "most minimal possible" solution we could think of.
 
 ## Features
 
@@ -31,6 +33,8 @@ store.entries.push({
 See the [store documentation](./packages/store/README.md) for full API details.
 
 ### Plugins
+
+TODO? Explain that these are temporary? Ideally just 
 
 - **[`catchAll`](./packages/store/src/vite/catch-all.ts)**: Aggregates server entries into a single `virtual:ud:catch-all` module
 - **[`devServer`](./packages/store/src/vite/dev-server.ts)**: Handles routing and HTML transforms during development
