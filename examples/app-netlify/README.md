@@ -8,4 +8,4 @@ Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deploye
 
 `awesome-framework` uses `@universal-deploy/store` to [declare its server entries](/tests/awesome-framework/src/vite/universalDeployPlugin.ts).
 
-Deployment on **Netlify** is done through [vite.config.ts](./vite.config.ts) thanks to [`@universal-deploy/netlify`](/packages/adapter-netlify) package.
+Deployment to **Netlify** is done through [`@universal-deploy/netlify`](./packages/adapter-netlify) (see [vite.config.ts](./vite.config.ts)).

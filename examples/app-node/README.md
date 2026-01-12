@@ -8,4 +8,4 @@ Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deploye
 
 `awesome-framework` uses `@universal-deploy/store` to [declare its server entries](/tests/awesome-framework/src/vite/universalDeployPlugin.ts).
 
-Deployment for **Node/Bun/Deno** is done through [vite.config.ts](./vite.config.ts).
+Deployment with **Node/Bun/Deno** is done through [`@universal-deploy/node`](./packages/adapter-node) (see [vite.config.ts](./vite.config.ts)).
