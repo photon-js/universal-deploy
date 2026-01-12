@@ -4,15 +4,15 @@
 
 ## Goal
 
-As discussed at [Netlify's RFC](https://github.com/vitejs/vite/discussions/20907), this project aims to... TODO: explain vision: what is the goal here? From the perspective of a user, framework, and deployment provider.
+As discussed at [Netlify's RFC](https://github.com/vitejs/vite/discussions/20907), this project aims to... TODO: explain vision: what is the goal here? From the perspective of a user, framework, and deployment provider. Just a little paragraph.
 
-TODO: explain that it's the "most minimal possible" solution we could think of.
+TODO: say (or even better explain) that it's minimal
 
 ## Features
 
 - **Global Store**: Register server entries ([`@universal-deploy/store`](./packages/store))
-- **Universal Routing**: Route matching using [`URLPattern` standard](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern)
-- **Convention**: Can be adopted by any Vite-based framework
+- **Universal Routing**: Via the [`URLPattern` standard](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern)
+- **Minimal conventions**: Can easily be adopted by any Vite-based framework
 
 ## Core Concepts
 
@@ -34,7 +34,12 @@ See the [store documentation](./packages/store/README.md) for full API details.
 
 ### Plugins
 
-TODO? Explain that these are temporary? Ideally just 
+Comments:
+- I don't understand `devServer` — it doesn't feel minimal.
+- Not sure I understand why `catchAll` and `compat` are plugins. A plugin system sounds complicated, not minimal.
+- Maybe the trick is to mention that all the "plugin system" are temporary (we aren't sure where code will end up living at)
+- Or, at least, maybe we don't use the word "plugin" but "modules" instead.
+- Or, we just remove this section...
 
 - **[`catchAll`](./packages/store/src/vite/catch-all.ts)**: Aggregates server entries into a single `virtual:ud:catch-all` module
 - **[`devServer`](./packages/store/src/vite/dev-server.ts)**: Handles routing and HTML transforms during development
@@ -43,7 +48,7 @@ TODO? Explain that these are temporary? Ideally just
 ### Adapters
 
 TODO:
-- Explain the goal of these packages
+- Explain the goal of the `@universal-deploy` packages. They are temporary, very important.
 - Add link to `vite-plugin-vercel@beta` ?
 
 Adapters handle platform-specific deployment:
