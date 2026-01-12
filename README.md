@@ -8,7 +8,6 @@ As discussed at [Netlify's RFC](https://github.com/vitejs/vite/discussions/20907
 
 ## Features
 
-- **Adapters**: Deploy to any platform (Node.js, Vercel, Netlify, Cloudflare) with a consistent API
 - **Global Store**: Register server entries ([`@universal-deploy/store`](./packages/store))
 - **Universal Routing**: Route matching using [`URLPattern` standard](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern)
 - **Framework Agnostic**: Works with any Vite-based framework
