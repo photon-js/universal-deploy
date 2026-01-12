@@ -4,7 +4,7 @@ import { vercel } from "vite-plugin-vercel/vite";
 
 export default defineConfig({
   plugins: [
-    // Version of vite-plugin-vercel that reads entries from @universal-deploy/store
+    // vite-plugin-vercel@11 uses Universal Deploy (i.e. it uses the global store @universal-deploy/store)
     vercel(),
     // Minimal SSR framework. Includes devServer and catchAll plugins from @universal-deploy/store
     awesomeFramework(),

@@ -14,6 +14,7 @@ export function universalDeployPlugin(): Plugin[] {
         handler() {
           if (injected) return;
           injected = true;
+          // Declaring server entries through @universal-deploy/store
           store.entries.push(
             {
               id: "awesome-framework/standalone",
@@ -25,7 +26,7 @@ export function universalDeployPlugin(): Plugin[] {
             },
             {
               id: "awesome-framework/ssr",
-              // FIXME URLPatternInit
+              // FIXME rou3 pattern for POC, should later be updated to URLPatternInit
               pattern: "/**",
             },
           );
@@ -34,7 +35,7 @@ export function universalDeployPlugin(): Plugin[] {
     },
     // Forwards request to server entries from a vite dev server middleware
     devServer(),
-    // Required for other plugins to work
+    // Required by devServer
     catchAll(),
   ];
 }
