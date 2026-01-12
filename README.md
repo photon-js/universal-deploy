@@ -42,13 +42,16 @@ The following Vite plugins help frameworks and deployment providers work with th
 
 ### Adapters
 
-Here are some temporary packages that demonstrate how deployment plugins can integrate `@universal-deploy/store`.
+Temporary packages that demonstrate how deployment plugins can integrate `@universal-deploy/store`.
 Packages like `@universal-deploy/netlify` will no longer be required once directly supported by Vite deployment plugins (e.g. `@netlify/vite-plugin`).
 
-- **[`@universal-deploy/node`](./packages/adapter-node)** (Node.js, Bun, Deno)
 - **[`@universal-deploy/netlify`](./packages/adapter-netlify)**
-- **[`vite-plugin-vercel@beta`](https://github.com/magne4000/vite-plugin-vercel/pull/207)** (uses Vercel build output API)
-- **`@cloudflare/vite-plugin`** (already compatible)
+- **[`@universal-deploy/node`](./packages/adapter-node)** (Node.js, Bun, Deno)
+
+Already compatible:
+
+- **[`vite-plugin-vercel@beta`](https://github.com/magne4000/vite-plugin-vercel/pull/207)**
+- **`@cloudflare/vite-plugin`**
 
 ## Examples
 
