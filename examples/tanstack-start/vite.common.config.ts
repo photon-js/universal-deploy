@@ -10,11 +10,10 @@ const config = defineConfig({
   plugins: [
     devtools(),
     // TanStack exposes an SSR entry (exports `default { fetch }`) via rollupOptions.
-    // The compat plugin picks it up and registers it in the global store with a default catch-all pattern.
+    // The compat plugin picks it up and registers it through @universal-deploy/store.
     compat(),
     // Provides the virtual catch-all entry required by the compat plugin.
     catchAll(),
-    // this is the plugin that enables path aliases
     viteTsConfigPaths({
       projects: ["./tsconfig.json"],
     }),

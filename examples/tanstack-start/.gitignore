@@ -10,4 +10,8 @@ count.txt
 .wrangler
 .output
 .vinxi
+.vercel
 todos.json
+
+# Local Netlify folder
+.netlify

@@ -43,6 +43,6 @@ export function compat(config?: { entry?: string }): Plugin {
       },
     },
 
-    ...dependsOn("photon:catch-all"),
+    ...dependsOn("ud:catch-all"),
   };
 }

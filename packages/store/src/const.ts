@@ -1,1 +1,1 @@
-export const catchAllId = "photon:catch-all" as const;
+export const catchAllId = "ud:catch-all" as const;

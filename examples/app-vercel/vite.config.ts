@@ -1,15 +1,11 @@
-import { cloudflare } from "@cloudflare/vite-plugin";
 import { awesomeFramework } from "awesome-framework/vite";
 import { defineConfig } from "vite";
+import { vercel } from "vite-plugin-vercel/vite";
 
 export default defineConfig({
   plugins: [
-    cloudflare({
-      inspectorPort: false,
-      viteEnvironment: {
-        name: "ssr",
-      },
-    }),
+    // Version of vite-plugin-vercel that reads entries from @universal-deploy/store
+    vercel(),
     // Minimal SSR framework. Includes devServer and catchAll plugins from @universal-deploy/store
     awesomeFramework(),
   ],

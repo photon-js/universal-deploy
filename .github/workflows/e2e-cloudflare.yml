@@ -24,6 +24,10 @@ jobs:
           workingDirectory: examples/app-cloudflare
       - name: Print deployment url
         run: |
+          if [ -z "$BASE_URL" ]; then
+            echo "Error: deployment-url is not defined or empty"
+            exit 1
+          fi
           echo "Deployment URL: $BASE_URL"
         env:
           BASE_URL: ${{ steps.deploy.outputs.deployment-url }}

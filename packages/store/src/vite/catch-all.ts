@@ -5,7 +5,7 @@ import { catchAllId } from "../const.js";
 import { catchAllEntry, store } from "../index.js";
 
 // A virtual module aggregating all routes defined in the store
-const re_catchAll = /^virtual:photon:catch-all$/;
+const re_catchAll = /^virtual:ud:catch-all$/;
 // Resolves to catchAllEntry
 const re_photonServer = /^virtual:photon:server-entry$/;
 
@@ -55,7 +55,7 @@ export function catchAll(): Plugin {
         }
         if (duplicates.size > 0) {
           console.warn(
-            `\nDuplicate entries detected in virtual:photon:catch-all. \nDuplicates:\n - ${Array.from(duplicates.values()).join("\n - ")}`,
+            `\nDuplicate entries detected in virtual:ud:catch-all. \nDuplicates:\n - ${Array.from(duplicates.values()).join("\n - ")}`,
           );
         }
 
@@ -71,13 +71,20 @@ const __map = {
 
 ${compiledFindRoute};
 
+function assertFetchable(mod) {
+  if (!mod || typeof mod !== "object") throw new Error("Missing default export");
+  if ("default" in mod && mod.default) mod = mod.default;
+  if (!mod || typeof mod !== "object" || !("fetch" in mod) || typeof mod.fetch !== "function")
+    throw new Error("Default export must include a { fetch() } function");
+  return mod;
+}
+
 export default {
   fetch(request) {
     const url = new URL(request.url);
     const key = findRoute("", url.pathname);
     if (!key || !key.data) return;
-    
-    return __map[key.data].fetch(request);
+    return assertFetchable(__map[key.data]).fetch(request);
   }
 }`;
         return code;
