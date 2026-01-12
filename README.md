@@ -1,3 +1,8 @@
+TODO:
+- add readme to each examples/* expaining what it's showing exactly (at first I was looking for a server entry but I finally realized that the server is implemented by `awesomeFramework`. So I guess explain that the mininal examples show how AwesomeFramework is deployed.
+- Show how AwesomeFramework integrates with UD?
+- I don't see where https://github.com/photon-js/universal-deploy/tree/main/examples/app-vercel/src/middlewares are being imported? I guess a readme is really needed here.
+
 # universal-deploy
 
 **Deploy your Vite app anywhere.**
