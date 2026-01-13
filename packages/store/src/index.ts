@@ -2,7 +2,7 @@ import type { Store } from "./types.js";
 
 export type * from "./types.js";
 
-const storeSymbol = Symbol.for("photon:store");
+const storeSymbol = Symbol.for("ud:store");
 // biome-ignore lint/suspicious/noExplicitAny: cast
 (globalThis as any)[storeSymbol] ||= { entries: [] } satisfies Store;
 // biome-ignore lint/suspicious/noExplicitAny: cast
