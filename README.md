@@ -61,7 +61,7 @@ Already compatible:
 
 ### Deployment plugin authors
 
-For deployment providers requiring a unique server entry, the easiest way is to [set `rollupOptions.input` to `catchAllEntry`](https://github.com/photon-js/universal-deploy/blob/83ed1ffea2d0d552f6883f12677cf0091ac027d7/packages/adapter-netlify/src/plugin.ts#L23). This virtual entry will be resolved by the `catchAll` plugin.
+For deployment providers requiring a unique server entry, the easiest way is to [set `rollupOptions.input` to `catchAllEntry`](https://github.com/photon-js/universal-deploy/blob/83ed1ffea2d0d552f6883f12677cf0091ac027d7/packages/adapter-netlify/src/plugin.ts#L23). This virtual entry will be resolved by the [`catchAll`](./packages/store/src/vite/catch-all.ts) plugin.
 
 For deployment providers with support for multiple server entries, [read `store.entries`](https://github.com/magne4000/vite-plugin-vercel/blob/a7fe4da0bbb68a4eca4f064d6296f703db7e0d3d/packages/vite-plugin-vercel/src/plugins/loader.ts#L92-L102) in a `post` `configEnvironment` hook and set `rollupOptions.input`.
 
