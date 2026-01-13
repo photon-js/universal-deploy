@@ -54,6 +54,18 @@ Already compatible:
 - **`@cloudflare/vite-plugin`**
 - **[`vite-plugin-vercel@beta`](https://github.com/magne4000/vite-plugin-vercel/pull/207)**
 
+## Usage
+### Framework authors
+
+[Call `store.entries.push`](https://github.com/photon-js/universal-deploy/blob/83ed1ffea2d0d552f6883f12677cf0091ac027d7/tests/awesome-framework/src/vite/universalDeployPlugin.ts#L18) at any point, preferably before `configResolved` hooks.
+
+### Deployment plugin authors
+
+[Read `store.entries`](https://github.com/magne4000/vite-plugin-vercel/blob/a7fe4da0bbb68a4eca4f064d6296f703db7e0d3d/packages/vite-plugin-vercel/src/plugins/loader.ts#L92-L102) in a `post` `configEnvironment` hook and set `rollupOptions.input`.
+
+> [!NOTE]
+> [`this.emitFile`](https://rollupjs.org/plugin-development/#this-emitfile) can also be used at later stages to achieve the same result.
+
 ## Examples
 
 - [`examples/tanstack-start`](./examples/tanstack-start): TanStack Start app deployed to Netlify, Cloudflare, Vercel, or Node.js/Bun/Deno.
@@ -62,6 +74,7 @@ Already compatible:
   - [`examples/app-vercel`](./examples/app-vercel)
   - [`examples/app-netlify`](./examples/app-netlify)
   - [`examples/app-cloudflare`](./examples/app-cloudflare)
+
 
 ## License
 
