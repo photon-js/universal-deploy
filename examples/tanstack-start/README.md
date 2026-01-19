@@ -16,4 +16,4 @@ Here 2 plugins are added to bridge the gap between TanStack Start and universal-
 - **[compat](./vite.common.config.ts)**: Extracts the server entry from `rollupOptions.input` and registers it in the global store
 - **[catchAll](./vite.common.config.ts)**: Required by the `compat` plugin (see [store/README.md](/packages/store/README.md#catchall) for details)
 
-That's it. It's the only changes required to make a TanStack app compatible with Universal Deploy.
+That's it. It's the only changes required to make TanStack Start compatible with Universal Deploy.
