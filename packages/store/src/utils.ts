@@ -5,6 +5,9 @@ export const pluginsUsage = {
   [catchAllId]: "@universal-deploy/store/vite",
 } as const;
 
+// biome-ignore lint/suspicious/noExplicitAny: any
+type PluginContext = ThisParameterType<Extract<Plugin["resolveId"], (...args: never) => any>>;
+
 export function dependsOn(pluginName: keyof typeof pluginsUsage) {
   return {
     configResolved(config) {
@@ -21,6 +24,14 @@ export function assertFetchable(mod: unknown, id: string): Fetchable {
   if (!mod || typeof mod !== "object" || !("fetch" in mod) || typeof mod.fetch !== "function")
     throw new Error(`Default export from ${id} must include a { fetch() } function`);
   return mod as Fetchable;
+}
+
+export function isServerEntry(pluginCtx: Pick<PluginContext, "getModuleInfo">, id: string): boolean {
+  const info = pluginCtx.getModuleInfo(id);
+  if (!info) return false;
+
+  const originalIds: string[] = info.meta?.entries ?? [];
+  return originalIds.length > 0;
 }
 
 // Types

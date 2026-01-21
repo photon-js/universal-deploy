@@ -1,6 +1,10 @@
 import { builtinModules } from "node:module";
-import type { Plugin } from "vite";
+import { defaultClientConditions, defaultExternalConditions, defaultServerConditions, type Plugin } from "vite";
 
+// @ts-expect-error Bun global
+const isBun = typeof Bun !== "undefined";
+// @ts-expect-error Deno global
+const isDeno = typeof Deno !== "undefined";
 const re_photonNode = /^virtual:photon:node-entry$/;
 
 // Creates a server and listens for connections in Node/Deno/Bun
@@ -25,6 +29,21 @@ export function node(): Plugin[] {
             id: resolved.id,
           };
         },
+      },
+    },
+    // Bun and Deno conditions
+    {
+      name: "photon:node:node-like",
+      configEnvironment(name, config) {
+        const defaultCondition = config.consumer === "client" ? defaultClientConditions : defaultServerConditions;
+        const additionalCondition = isBun ? ["bun"] : isDeno ? ["deno"] : [];
+
+        return {
+          resolve: {
+            conditions: [...additionalCondition, ...defaultCondition],
+            externalConditions: [...additionalCondition, ...defaultExternalConditions],
+          },
+        };
       },
     },
     // Emit the node entry
