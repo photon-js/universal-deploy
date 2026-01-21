@@ -6,7 +6,7 @@ import { store } from "../index.js";
 
 // A virtual module aggregating all routes defined in the store. Can be overridden by plugins
 const re_catchAll = /^virtual:ud:catch-all$/;
-const re_catchAllDefault = /^virtual:ud:catch-all?default$/;
+const re_catchAllDefault = /^virtual:ud:catch-all\?default$/;
 
 // Current version compiles with rou3/compiler.
 // For target supporting URLPattern, we could also provide a compiled version with native URLPattern support (smaller bundle).
@@ -15,12 +15,8 @@ export function catchAll(): Plugin {
   return {
     name: catchAllId,
     resolveId: {
-      // easier to override
-      order: "post",
       filter: {
-        id: {
-          include: [re_catchAll, re_catchAllDefault],
-        },
+        id: [re_catchAll, re_catchAllDefault],
       },
       handler(id) {
         return id;
