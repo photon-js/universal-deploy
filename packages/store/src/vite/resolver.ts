@@ -29,7 +29,7 @@ export function resolveTracker(): Plugin {
                 meta: {
                   ...resolved.meta,
                   // FIXME find a better name
-                  entries: [...resolved.meta.entries, id],
+                  entries: [...(resolved.meta?.entries ?? []), id],
                 },
               };
             }
