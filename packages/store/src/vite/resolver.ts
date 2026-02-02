@@ -12,6 +12,8 @@ interface InternalResolverApi {
   addEntry(resolvedId: string, ...meta: EntryMeta[]): void;
 }
 
+const pluginName = "photon:resolver";
+
 /**
  * Keep track of resolved server entries
  */
@@ -38,7 +40,7 @@ export function resolver(): Plugin<(env: Environment) => ResolverApi> {
   }
 
   return {
-    name: "photon:resolver",
+    name: pluginName,
     enforce: "pre",
     perEnvironmentStartEndDuringDev: true,
     sharedDuringBuild: false,
@@ -78,4 +80,18 @@ export function resolver(): Plugin<(env: Environment) => ResolverApi> {
       },
     },
   };
+}
+
+const resolverPluginWm = new WeakMap<Environment, ReturnType<typeof resolver>>();
+export function isServerEntry(env: Environment, id: string): boolean {
+  let resolverPlugin: ReturnType<typeof resolver> | undefined = resolverPluginWm.get(env);
+  if (!resolverPlugin) {
+    resolverPlugin = env.plugins.find((p) => p.name === pluginName);
+    if (resolverPlugin) {
+      resolverPluginWm.set(env, resolverPlugin);
+    }
+  }
+  if (!resolverPlugin || !resolverPlugin.api) throw new Error(`Missing ${pluginName} plugin`);
+
+  return (resolverPlugin.api(env).findEntries.get(id)?.length ?? 0) > 0;
 }

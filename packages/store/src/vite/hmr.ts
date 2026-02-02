@@ -1,6 +1,6 @@
 import MagicString from "magic-string";
 import type { Plugin } from "vite";
-import { isServerEntry } from "../utils.js";
+import { isServerEntry } from "./resolver.js";
 
 export function hmr(): Plugin {
   return {
@@ -9,8 +9,6 @@ export function hmr(): Plugin {
 
     async transform(code: string, id: string) {
       if (!isServerEntry(this.environment, id)) return;
-
-      console.log("SERVER ENTRY", id);
 
       const s = new MagicString(code);
 
