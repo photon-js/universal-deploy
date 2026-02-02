@@ -21,7 +21,8 @@
   },
   "peerDependencies": {
     "@universal-middleware/core": "^0.4.13",
-    "@universal-middleware/srvx": "^0.1.1"
+    "@universal-middleware/srvx": "^0.1.1",
+    "vite": "^7.3.0"
   },
   "exports": {
     ".": "./dist/vite.js",
