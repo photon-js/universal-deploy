@@ -1,27 +1,31 @@
+import MagicString from "magic-string";
 import type { Plugin } from "vite";
-import { dependsOn, isServerEntry } from "../utils.js";
+import { isServerEntry } from "../utils.js";
 
 export function hmr(): Plugin {
   return {
     name: "photon:hmr",
     apply: "serve",
 
-    transform(code: string, id: string) {
-      if (!isServerEntry(this, id)) return;
+    async transform(code: string, id: string) {
+      if (!isServerEntry(this.environment, id)) return;
 
-      const transformed = `${code}
+      console.log("SERVER ENTRY", id);
 
+      const s = new MagicString(code);
+
+      const hmrCode = `
 if (import.meta.hot) {
   import.meta.hot.accept();
 }
 `;
 
+      s.append(hmrCode);
+
       return {
-        code: transformed,
-        map: null,
+        code: s.toString(),
+        map: s.generateMap({ hires: true }),
       };
     },
-
-    ...dependsOn("photon:resolve-entries"),
   };
 }

@@ -16,7 +16,6 @@ export function isFetchableDevEnvironment(environment: Environment): environment
  * Resolves catch-all entry and forwards incoming requests to its `fetch()` handler.
  */
 export function devServer(): Plugin {
-  // TODO HMR
   return {
     name: "universal-deploy:dev-server",
     apply(_config, { command, mode }) {
@@ -25,19 +24,20 @@ export function devServer(): Plugin {
     configureServer(server) {
       return () => {
         const ssr = server.environments.ssr;
-        let mod: Fetchable | undefined;
+        let resolvedId: string | undefined;
 
         async function devMiddleware(request: Request) {
           if (isRunnableDevEnvironment(ssr)) {
-            if (!mod) {
+            if (!resolvedId) {
               const resolved = await ssr.pluginContainer.resolveId(catchAllEntry);
 
               if (!resolved?.id) {
                 throw new Error(`Could not resolve server entry ${catchAllEntry}`);
               }
 
-              mod = await envImportFetchable(ssr, resolved.id);
+              resolvedId = resolved.id;
             }
+            const mod = await envImportFetchable(ssr, resolvedId);
             return mod.fetch(request);
           } else if (isFetchableDevEnvironment(ssr)) {
             // TODO to be tested
