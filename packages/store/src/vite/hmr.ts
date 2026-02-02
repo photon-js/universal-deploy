@@ -1,5 +1,5 @@
 import type { Plugin } from "vite";
-import { isServerEntry } from "../utils.js";
+import { dependsOn, isServerEntry } from "../utils.js";
 
 export function hmr(): Plugin {
   return {
@@ -21,5 +21,7 @@ if (import.meta.hot) {
         map: null,
       };
     },
+
+    ...dependsOn("photon:resolve-entries"),
   };
 }

@@ -26,7 +26,6 @@
   "exports": {
     ".": "./dist/vite.js",
     "./vite": "./dist/vite.js",
-    "./standalone": "./dist/entries/standalone.js",
     "./api": "./dist/entries/api.js",
     "./ssr": "./dist/entries/ssr.js"
   }

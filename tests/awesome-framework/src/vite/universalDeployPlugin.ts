@@ -17,10 +17,6 @@ export function universalDeployPlugin(): Plugin[] {
           // Declaring server entries through @universal-deploy/store
           store.entries.push(
             {
-              id: "awesome-framework/standalone",
-              pattern: "/standalone",
-            },
-            {
               id: "awesome-framework/api",
               pattern: "/api",
             },

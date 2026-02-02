@@ -7,10 +7,6 @@ import { store } from "@universal-deploy/store";
 // Registering — add entries to the store
 store.entries.push(
   {
-    id: "awesome-framework/standalone",
-    pattern: "/standalone",
-  },
-  {
     id: "./src/server/api.ts",
     pattern: "/api",
   },

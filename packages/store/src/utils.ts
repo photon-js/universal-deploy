@@ -3,6 +3,7 @@ import { catchAllId } from "./const.js";
 
 export const pluginsUsage = {
   [catchAllId]: "@universal-deploy/store/vite",
+  "photon:resolve-entries": "@universal-deploy/store/vite",
 } as const;
 
 // biome-ignore lint/suspicious/noExplicitAny: any

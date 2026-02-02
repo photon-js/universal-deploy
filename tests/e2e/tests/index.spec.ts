@@ -21,21 +21,6 @@ test("/api", async ({ request }) => {
   expect(await response.text()).toBe("The API Route");
 });
 
-test("/standalone", async ({ request }) => {
-  const response = await request.get("/standalone");
-  expect(await response.text()).toBe("The /standalone Route");
-});
-
-// test("/bar", async ({ request }) => {
-//   const response = await request.get("/bar");
-//   expect(await response.text()).toBe("bar");
-// });
-//
-// test("/foo", async ({ request }) => {
-//   const response = await request.get("/foo");
-//   expect(await response.text()).toBe("foo");
-// });
-
 async function testCounter(page: Page, currentValue = 0) {
   const btn = page.locator("button", { hasText: "Counter" });
 

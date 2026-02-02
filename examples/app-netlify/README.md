@@ -3,7 +3,7 @@ Minimal SSR app based on [`awesome-framework`](/tests/awesome-framework) deploye
 ### How it works
 
 [`awesome-framework`](/tests/awesome-framework) declares the following routes:
-- `/standalone`, `/api`: Plain-text server responses
+- `/api`: Plain-text server response
 - `/**`: SSR response. Will send `src/entry-client.ts` as client-side code.
 
 `awesome-framework` uses `@universal-deploy/store` to [declare its server entries](/tests/awesome-framework/src/vite/universalDeployPlugin.ts).
