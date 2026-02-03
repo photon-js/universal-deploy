@@ -20,7 +20,7 @@
     "========= Only allow pnpm; forbid yarn & npm": "",
     "preinstall": "npx only-allow pnpm",
     "========= Release": "",
-    "release": "pnpm run build:photon && changeset version && pnpm i && pnpm publish -r --no-git-checks",
+    "release": "pnpm run build && changeset version && pnpm i && pnpm publish -r --no-git-checks",
     "release:beta": "changeset pre enter beta && changeset version && pnpm publish -r --no-git-checks --tag beta"
   },
   "devDependencies": {
