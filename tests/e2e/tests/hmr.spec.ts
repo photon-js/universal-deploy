@@ -48,10 +48,8 @@ test.describe("Server-side HMR", () => {
     await goto(page, "/");
 
     const addedCode = '\nconsole.log("test");';
-    const modifiedViteConfig = originalViteConfig.replace("\nexport default", `${addedCode}\nexport default`);
-
     const reloadPromise = page.waitForEvent("load");
-    await fs.writeFile(viteConfigPath, modifiedViteConfig, "utf-8");
+    await fs.appendFile(viteConfigPath, addedCode, "utf-8");
 
     await expect(reloadPromise).resolves.toBeDefined();
   });

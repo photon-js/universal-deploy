@@ -6,6 +6,7 @@ settings:
 
 overrides:
   '@types/node': ^22.19.3
+  '@universal-deploy/store': workspace:^
 
 importers:
 
@@ -133,8 +134,8 @@ importers:
         specifier: ^7.3.0
         version: 7.3.0(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2)
       vite-plugin-vercel:
-        specifier: ^11.0.0-beta.10
-        version: 11.0.0-beta.10(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(rollup@4.53.5)(srvx@0.9.8)(vite@7.3.0(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: ^11.0.0-beta.11
+        version: 11.0.0-beta.11(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(rollup@4.53.5)(srvx@0.9.8)(vite@7.3.0(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2))
 
   examples/tanstack-start:
     dependencies:
@@ -218,8 +219,8 @@ importers:
         specifier: ^7.3.0
         version: 7.3.0(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2)
       vite-plugin-vercel:
-        specifier: ^11.0.0-beta.10
-        version: 11.0.0-beta.10(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(rollup@4.53.5)(srvx@0.9.8)(vite@7.3.0(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: ^11.0.0-beta.11
+        version: 11.0.0-beta.11(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(rollup@4.53.5)(srvx@0.9.8)(vite@7.3.0(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2))
       web-vitals:
         specifier: ^5.1.0
         version: 5.1.0
@@ -2695,9 +2696,6 @@ packages:
   '@typescript-eslint/visitor-keys@8.50.0':
     resolution: {integrity: sha512-Xzmnb58+Db78gT/CCj/PVCvK+zxbnsw6F+O1oheYszJbBSdEjVhQi3C/Xttzxgi/GLmpvOggRs1RFpiJ8+c34Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@universal-deploy/store@0.0.2':
-    resolution: {integrity: sha512-fmNALSCBkjrpJmidLmMU5c4jWTXs/CKsgk9cDmTPZpne5+vWLqw73Smav6NT2tXbkGlG9nl8v4BNIFb1eE9wuw==}
 
   '@universal-middleware/core@0.4.13':
     resolution: {integrity: sha512-k2zv5/zLWPUBxIZp/QTxkiVkG4EyqO+X6ABszBKg8ZmZpTp5ljd8uiIWdnMpSDDIN72R99RxtaMi0/vXNB75/w==}
@@ -5238,8 +5236,8 @@ packages:
     resolution: {integrity: sha512-OljLrQ9SQdOUqTaQxqL5dEfZWrXExyyWsozYlAWFawPVNuD83igl7uJD2RTkNMbniIYgt8l81eCJGIdQF7avLQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  vite-plugin-vercel@11.0.0-beta.10:
-    resolution: {integrity: sha512-dk3C6kITw0d9LTIOX4agJkrxdJ0cClLMcz6oziswxd0iQtNQ1IUOJ/dVbWClZHTmU/XPmw1BLHHKbeJoBlltRQ==}
+  vite-plugin-vercel@11.0.0-beta.11:
+    resolution: {integrity: sha512-WMVvt6xnDlY0Hus7gaPFsN+/RkZiyARURbtjpY39rjAO3mHbqj0TX3kJn0k22DaO1RuU28M29tsPf0OAzBb4ag==}
     peerDependencies:
       vite: '>=7.1'
 
@@ -7738,21 +7736,6 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.50.0
       eslint-visitor-keys: 4.2.1
-
-  '@universal-deploy/store@0.0.2(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(srvx@0.9.8)':
-    dependencies:
-      '@universal-middleware/express': 0.4.22(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(srvx@0.9.8)
-      rou3: 0.7.12
-    transitivePeerDependencies:
-      - '@cloudflare/workers-types'
-      - '@hattip/core'
-      - '@types/express'
-      - '@webroute/route'
-      - elysia
-      - fastify
-      - h3
-      - hono
-      - srvx
 
   '@universal-middleware/core@0.4.13(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(srvx@0.9.8)':
     dependencies:
@@ -10347,10 +10330,10 @@ snapshots:
 
   validate-npm-package-name@5.0.1: {}
 
-  vite-plugin-vercel@11.0.0-beta.10(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(rollup@4.53.5)(srvx@0.9.8)(vite@7.3.0(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2)):
+  vite-plugin-vercel@11.0.0-beta.11(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(rollup@4.53.5)(srvx@0.9.8)(vite@7.3.0(@types/node@22.19.3)(jiti@2.6.1)(lightningcss@1.30.2)(tsx@4.21.0)(yaml@2.8.2)):
     dependencies:
       '@manypkg/find-root': 3.1.0
-      '@universal-deploy/store': 0.0.2(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(srvx@0.9.8)
+      '@universal-deploy/store': link:packages/store
       '@universal-middleware/core': 0.4.13(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(srvx@0.9.8)
       '@universal-middleware/vercel': 0.4.29(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.1)(srvx@0.9.8)
       '@vercel/build-utils': 13.2.4

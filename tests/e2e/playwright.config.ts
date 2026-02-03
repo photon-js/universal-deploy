@@ -20,6 +20,7 @@ if (process.env.CI) {
   additionalConfig.workers = 1;
 } else {
   additionalConfig.forbidOnly = false;
+  additionalConfig.timeout = 10000;
 }
 
 /**

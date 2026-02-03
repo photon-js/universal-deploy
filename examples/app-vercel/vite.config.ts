@@ -7,6 +7,13 @@ export default defineConfig({
     // vite-plugin-vercel@11 uses Universal Deploy (i.e. it uses the global store @universal-deploy/store)
     vercel(),
     // Minimal SSR framework. Includes devServer and catchAll plugins from @universal-deploy/store
-    awesomeFramework(),
+    awesomeFramework({
+      additionalEntries: [
+        {
+          id: "./src/api/test.ts",
+          pattern: "/api/test",
+        },
+      ],
+    }),
   ],
 });
