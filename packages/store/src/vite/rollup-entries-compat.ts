@@ -12,6 +12,7 @@ let added = false;
  * - The effect is applied only once per process (guarded by an internal flag).
  * - It currently registers a catch-all route pattern.
  */
+// TODO implement static config forwarding
 export function compat(config?: { entry?: string }): Plugin {
   return {
     name: "photon:rollup-ssr-entry-compat",
