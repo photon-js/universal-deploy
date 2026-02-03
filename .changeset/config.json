@@ -13,6 +13,7 @@
     "app-cloudflare",
     "app-netlify",
     "app-node",
+    "app-vercel",
     "app-tanstack-start"
   ]
 }
