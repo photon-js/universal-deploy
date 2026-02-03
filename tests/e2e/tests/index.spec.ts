@@ -1,6 +1,8 @@
 import { expect, type Page, test } from "@playwright/test";
 import { goto } from "./utils.js";
 
+test.describe.configure({ mode: "parallel" });
+
 test("page content is rendered to HTML", async ({ page }) => {
   await goto(page, "/");
   const h1 = page.locator("h1");

@@ -34,7 +34,7 @@ export function node(): Plugin[] {
     // Bun and Deno conditions
     {
       name: "photon:node:node-like",
-      configEnvironment(name, config) {
+      configEnvironment(_name, config) {
         const defaultCondition = config.consumer === "client" ? defaultClientConditions : defaultServerConditions;
         const additionalCondition = isBun ? ["bun"] : isDeno ? ["deno"] : [];
 
