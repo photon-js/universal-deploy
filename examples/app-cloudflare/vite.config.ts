@@ -20,4 +20,9 @@ export default defineConfig({
       ],
     }),
   ],
+  ssr: {
+    optimizeDeps: {
+      exclude: ["@universal-middleware/core", "@universal-middleware/srvx"],
+    },
+  },
 });
