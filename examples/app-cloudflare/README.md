@@ -3,7 +3,7 @@ Minimal Vite app using [`awesome-framework`](/tests/awesome-framework) deployed 
 ### How it works
 
 [`awesome-framework`](/tests/awesome-framework) declares the following routes:
-- `/standalone`, `/api`: Plain-text server responses
+- `/api`: Plain-text server response
 - `/**`: SSR response. Will send `src/entry-client.ts` as client-side code.
 
 `awesome-framework` uses `@universal-deploy/store` to [declare its server entries](/tests/awesome-framework/src/vite/universalDeployPlugin.ts).

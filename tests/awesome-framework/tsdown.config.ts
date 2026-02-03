@@ -17,7 +17,6 @@ export default defineConfig([
     platform: "neutral",
     entry: {
       vite: "./src/vite/index.ts",
-      "entries/standalone": "./src/entries/standalone.ts",
       "entries/api": "./src/entries/api.ts",
       "entries/ssr": "./src/entries/ssr.ts",
     },

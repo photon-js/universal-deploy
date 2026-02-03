@@ -2,12 +2,11 @@ import { addRoute, createRouter } from "rou3";
 import { compileRouterToString } from "rou3/compiler";
 import type { Plugin } from "vite";
 import { catchAllId } from "../const.js";
-import { catchAllEntry, store } from "../index.js";
+import { store } from "../index.js";
 
-// A virtual module aggregating all routes defined in the store
+// A virtual module aggregating all routes defined in the store. Can be overridden by plugins
 const re_catchAll = /^virtual:ud:catch-all$/;
-// Resolves to catchAllEntry
-const re_photonServer = /^virtual:photon:server-entry$/;
+const re_catchAllDefault = /^virtual:ud:catch-all\?default$/;
 
 // Current version compiles with rou3/compiler.
 // For target supporting URLPattern, we could also provide a compiled version with native URLPattern support (smaller bundle).
@@ -17,17 +16,15 @@ export function catchAll(): Plugin {
     name: catchAllId,
     resolveId: {
       filter: {
-        id: {
-          include: [re_catchAll, re_photonServer],
-        },
+        id: [re_catchAll, re_catchAllDefault],
       },
-      async handler(id, importer) {
-        return id.match(re_catchAll) ? id : this.resolve(catchAllEntry, importer, { skipSelf: false });
+      handler(id) {
+        return id;
       },
     },
     load: {
       filter: {
-        id: re_catchAll,
+        id: [re_catchAll, re_catchAllDefault],
       },
       async handler() {
         const imports: string[] = [];

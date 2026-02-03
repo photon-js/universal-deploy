@@ -1,6 +1,6 @@
 {
   "name": "@universal-deploy/netlify",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,8 +19,11 @@
     "rou3": "^0.7.12"
   },
   "devDependencies": {
-    "tsdown": "^0.18.0",
+    "tsdown": "^0.20.1",
     "typescript": "^5.9.3",
+    "vite": "^7.3.0"
+  },
+  "peerDependencies": {
     "vite": "^7.3.0"
   },
   "files": [

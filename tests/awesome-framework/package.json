@@ -15,18 +15,18 @@
   },
   "devDependencies": {
     "@types/node": "^22.19.3",
-    "tsdown": "^0.18.0",
+    "tsdown": "^0.20.1",
     "typescript": "^5.9.3",
     "vite": "^7.3.0"
   },
   "peerDependencies": {
     "@universal-middleware/core": "^0.4.13",
-    "@universal-middleware/srvx": "^0.1.1"
+    "@universal-middleware/srvx": "^0.1.1",
+    "vite": "^7.3.0"
   },
   "exports": {
     ".": "./dist/vite.js",
     "./vite": "./dist/vite.js",
-    "./standalone": "./dist/entries/standalone.js",
     "./api": "./dist/entries/api.js",
     "./ssr": "./dist/entries/ssr.js"
   }

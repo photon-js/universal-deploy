@@ -11,6 +11,18 @@ export default defineConfig({
       },
     }),
     // Minimal SSR framework. Includes devServer and catchAll plugins from @universal-deploy/store
-    awesomeFramework(),
+    awesomeFramework({
+      additionalEntries: [
+        {
+          id: "./src/api/test.ts",
+          pattern: "/api/test",
+        },
+      ],
+    }),
   ],
+  ssr: {
+    optimizeDeps: {
+      exclude: ["@universal-middleware/core", "@universal-middleware/srvx"],
+    },
+  },
 });

@@ -1,6 +1,8 @@
 import { expect, type Page, test } from "@playwright/test";
 import { goto } from "./utils.js";
 
+test.describe.configure({ mode: "parallel" });
+
 test("page content is rendered to HTML", async ({ page }) => {
   await goto(page, "/");
   const h1 = page.locator("h1");
@@ -20,21 +22,6 @@ test("/api", async ({ request }) => {
   const response = await request.get("/api");
   expect(await response.text()).toBe("The API Route");
 });
-
-test("/standalone", async ({ request }) => {
-  const response = await request.get("/standalone");
-  expect(await response.text()).toBe("The /standalone Route");
-});
-
-// test("/bar", async ({ request }) => {
-//   const response = await request.get("/bar");
-//   expect(await response.text()).toBe("bar");
-// });
-//
-// test("/foo", async ({ request }) => {
-//   const response = await request.get("/foo");
-//   expect(await response.text()).toBe("foo");
-// });
 
 async function testCounter(page: Page, currentValue = 0) {
   const btn = page.locator("button", { hasText: "Counter" });

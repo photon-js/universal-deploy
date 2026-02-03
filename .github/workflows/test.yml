@@ -34,6 +34,7 @@ jobs:
       - run: pnpm run test
         env:
           LANG: en_US
+          HMR: 1
       - run: pnpm run test:types
 
   lint:

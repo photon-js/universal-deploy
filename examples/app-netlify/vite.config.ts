@@ -7,6 +7,13 @@ export default defineConfig({
     // re-exports @netlify/vite-plugin, and sets rollupOptions.input to virtual:ud:catch-all
     netlify(),
     // Minimal SSR framework. Includes devServer and catchAll plugins from @universal-deploy/store
-    awesomeFramework(),
+    awesomeFramework({
+      additionalEntries: [
+        {
+          id: "./src/api/test.ts",
+          pattern: "/api/test",
+        },
+      ],
+    }),
   ],
 });

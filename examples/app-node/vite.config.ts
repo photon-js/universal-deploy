@@ -1,4 +1,5 @@
 import { node } from "@universal-deploy/node/vite";
+import { hmr, resolver } from "@universal-deploy/store/vite";
 import { awesomeFramework } from "awesome-framework/vite";
 import { defineConfig } from "vite";
 
@@ -7,6 +8,15 @@ export default defineConfig({
     // Emits dist/index.js
     node(),
     // Minimal SSR framework. Includes devServer and catchAll plugins from @universal-deploy/store
-    awesomeFramework(),
+    awesomeFramework({
+      additionalEntries: [
+        {
+          id: "./src/api/test.ts",
+          pattern: "/api/test",
+        },
+      ],
+    }),
+    resolver(),
+    hmr(),
   ],
 });
