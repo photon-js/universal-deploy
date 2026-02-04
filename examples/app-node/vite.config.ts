@@ -6,7 +6,9 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [
     // Emits dist/index.js
-    node(),
+    node({
+      static: "dist/client",
+    }),
     // Minimal SSR framework. Includes devServer and catchAll plugins from @universal-deploy/store
     awesomeFramework({
       additionalEntries: [

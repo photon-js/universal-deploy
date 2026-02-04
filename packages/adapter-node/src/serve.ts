@@ -17,7 +17,6 @@ async function startServer() {
   }
 
   if (staticDir === undefined || staticDir === true) {
-    // TODO: awesome-framework should set this value to `dist/client` on the entry
     staticDir = "public";
   }
 
