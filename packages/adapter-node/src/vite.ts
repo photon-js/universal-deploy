@@ -58,6 +58,21 @@ export function node(options?: { static?: string }): Plugin[] {
         };
       },
     },
+    // Bun and Deno conditions
+    {
+      name: "photon:node:node-like",
+      configEnvironment(_name, config) {
+        const defaultCondition = config.consumer === "client" ? defaultClientConditions : defaultServerConditions;
+        const additionalCondition = isBun ? ["bun"] : isDeno ? ["deno"] : [];
+
+        return {
+          resolve: {
+            conditions: [...additionalCondition, ...defaultCondition],
+            externalConditions: [...additionalCondition, ...defaultExternalConditions],
+          },
+        };
+      },
+    },
     // Emit the node entry
     {
       name: "photon:node:emit",
