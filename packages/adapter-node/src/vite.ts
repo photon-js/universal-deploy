@@ -8,7 +8,7 @@ const isDeno = typeof Deno !== "undefined";
 const re_photonNode = /^virtual:photon:node-entry$/;
 
 // Creates a server and listens for connections in Node/Deno/Bun
-export function node(): Plugin[] {
+export function node(options?: { static?: string }): Plugin[] {
   return [
     // Resolves virtual:photon:node-entry to its node runtime id
     {
@@ -29,6 +29,33 @@ export function node(): Plugin[] {
             id: resolved.id,
           };
         },
+      },
+
+      transform: {
+        filter: {
+          code: /__UD_STATIC__/,
+        },
+        handler(code) {
+          return code.replace(
+            /__UD_STATIC__/g,
+            JSON.stringify(typeof options?.static === "string" ? options.static : false),
+          );
+        },
+      },
+    },
+    // Bun and Deno conditions
+    {
+      name: "photon:node:node-like",
+      configEnvironment(_name, config) {
+        const defaultCondition = config.consumer === "client" ? defaultClientConditions : defaultServerConditions;
+        const additionalCondition = isBun ? ["bun"] : isDeno ? ["deno"] : [];
+
+        return {
+          resolve: {
+            conditions: [...additionalCondition, ...defaultCondition],
+            externalConditions: [...additionalCondition, ...defaultExternalConditions],
+          },
+        };
       },
     },
     // Bun and Deno conditions
@@ -62,6 +89,10 @@ export function node(): Plugin[] {
                       index: "virtual:photon:node-entry",
                     },
                   },
+                },
+                resolve: {
+                  // Do not mark import("@universal-deploy/node/server") as external as it contains a virtual module
+                  noExternal: ["@universal-deploy/node"],
                 },
               },
             },
