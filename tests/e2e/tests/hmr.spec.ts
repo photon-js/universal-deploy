@@ -4,8 +4,10 @@ import path from "node:path";
 import { expect, test } from "@playwright/test";
 import { goto } from "./utils.js";
 
+const TEST_HMR = Boolean(process.env.HMR ?? !process.env.CI);
+
 test.describe("Server-side HMR", () => {
-  test.skip(!process.env.HMR, "disabled HMR tests");
+  test.skip(!TEST_HMR, "disabled HMR tests");
   const apiFilePath = path.join(process.cwd(), "src/api/test.ts");
   const viteConfigPath = path.join(process.cwd(), "vite.config.ts");
 
