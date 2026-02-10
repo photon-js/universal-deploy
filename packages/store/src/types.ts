@@ -14,9 +14,9 @@ export interface EntryMeta {
   /**
    * Route pattern(s) for this entry.
    *
-   * Adheres to the {@link https://developer.mozilla.org/en-US/docs/Web/API/URLPattern | URLPattern API}.
+   * Should be a valid {@link https://github.com/h3js/rou3 | rou3} pattern.
    */
-  pattern: URLPatternInput | URLPatternInput[];
+  route: string | string[];
   /**
    * The Vite environment this entry belongs to.
    *
@@ -24,20 +24,6 @@ export interface EntryMeta {
    */
   environment?: string;
 }
-
-interface URLPatternInit {
-  protocol?: string;
-  username?: string;
-  password?: string;
-  hostname?: string;
-  port?: string;
-  pathname?: string;
-  search?: string;
-  hash?: string;
-  baseURL?: string;
-}
-
-type URLPatternInput = string | URLPatternInit;
 
 type HttpMethod = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";
 

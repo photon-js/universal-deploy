@@ -27,11 +27,11 @@ export interface EntryMeta {
    */
   method?: HttpMethod | HttpMethod[];
   /**
-   * Route pattern(s) to match for this entry.
+   * Route pattern(s) for this entry.
    *
-   * Uses the {@link https://developer.mozilla.org/en-US/docs/Web/API/URLPattern | URLPattern API} syntax.
+   * Should be a valid {@link https://github.com/h3js/rou3 | rou3} pattern.
    */
-  pattern: URLPatternInput | URLPatternInput[];
+  route: string | string[];
   /**
    * The Vite environment for this entry.
    *

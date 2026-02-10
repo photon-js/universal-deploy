@@ -10,6 +10,8 @@ export function hmr(): Plugin {
     async transform(code: string, id: string) {
       if (!isServerEntry(this.environment, id)) return;
 
+      if (code.includes("import.meta.hot.accept(")) return;
+
       const s = new MagicString(code);
 
       const hmrCode = `

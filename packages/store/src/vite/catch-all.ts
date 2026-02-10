@@ -6,11 +6,9 @@ import { getAllEntries } from "../index.js";
 
 // A virtual module aggregating all routes defined in the store. Can be overridden by plugins
 const re_catchAll = /^virtual:ud:catch-all$/;
+// Always resolves through this plugin. Should NOT be overridden
 const re_catchAllDefault = /^virtual:ud:catch-all\?default$/;
 
-// Current version compiles with rou3/compiler.
-// For target supporting URLPattern, we could also provide a compiled version with native URLPattern support (smaller bundle).
-// Also perhaps replace the rou3/compiler by a unique concatenated regex matcher (See https://github.com/honojs/hono/blob/57f214663ec63666d5a86620928f90af472e95a4/src/router/reg-exp-router/prepared-router.ts#L156).
 export function catchAll(): Plugin {
   return {
     name: catchAllId,
@@ -32,7 +30,13 @@ export function catchAll(): Plugin {
         const router = createRouter<string>();
 
         let i = 0;
-        const seen = new Set<string>();
+        const seen = new Map<
+          string,
+          {
+            routes: Set<string>;
+            i: number;
+          }
+        >();
         const duplicates = new Set<string>();
 
         for (const meta of getAllEntries()) {
@@ -40,17 +44,31 @@ export function catchAll(): Plugin {
           if (!resolved) {
             throw new Error(`Failed to resolve ${meta.id}`);
           }
+          const rou3Paths = new Set(Array.isArray(meta.route) ? meta.route : [meta.route]);
           if (seen.has(resolved.id)) {
-            // TODO addRoute for duplicates with different routes (and do not warn for those)
-            duplicates.add(resolved.id);
+            // biome-ignore lint/style/noNonNullAssertion: ok
+            const { routes, i } = seen.get(resolved.id)!;
+            let added = false;
+            for (const route of rou3Paths) {
+              if (!routes.has(route)) {
+                added = true;
+                routes.add(route);
+                addRoute(router, "", route, `m${i}`);
+              }
+            }
+            if (!added) {
+              duplicates.add(resolved.id);
+            }
           } else {
-            seen.add(resolved.id);
-            // FIXME testing with rou3 patterns for now, but this will need transformation from actual URLPatternInit
-            // TODO handle string[] and .method
-            const rou3Path = meta.pattern as string;
+            seen.set(resolved.id, {
+              routes: rou3Paths,
+              i,
+            });
             imports.push(`import m${i} from ${JSON.stringify(resolved.id)};`);
             routesByKey.push(`m${i}`);
-            addRoute(router, "", rou3Path, `m${i}`);
+            rou3Paths.forEach((route) => {
+              addRoute(router, "", route, `m${i}`);
+            });
             i += 1;
           }
         }

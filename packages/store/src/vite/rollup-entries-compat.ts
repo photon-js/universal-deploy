@@ -33,8 +33,7 @@ export function compat(config?: { entry?: string }): Plugin {
 
         addEntry({
           id: inputStr,
-          // FIXME change to URLPatternInit format
-          pattern: "/**",
+          route: "/**",
         });
       },
     },

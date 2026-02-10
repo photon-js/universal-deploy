@@ -14,7 +14,7 @@ export default defineConfig({
       additionalEntries: [
         {
           id: "./src/api/test.ts",
-          pattern: "/api/test",
+          route: "/api/test",
         },
       ],
     }),
