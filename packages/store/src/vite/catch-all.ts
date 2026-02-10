@@ -45,6 +45,7 @@ export function catchAll(): Plugin {
             throw new Error(`Failed to resolve ${meta.id}`);
           }
           const rou3Paths = new Set(Array.isArray(meta.route) ? meta.route : [meta.route]);
+          const methods = Array.isArray(meta.method) ? meta.method : [meta.method ?? ""];
           if (seen.has(resolved.id)) {
             // biome-ignore lint/style/noNonNullAssertion: ok
             const { routes, i } = seen.get(resolved.id)!;
@@ -53,7 +54,9 @@ export function catchAll(): Plugin {
               if (!routes.has(route)) {
                 added = true;
                 routes.add(route);
-                addRoute(router, "", route, `m${i}`);
+                methods.forEach((method) => {
+                  addRoute(router, method, route, `m${i}`);
+                });
               }
             }
             if (!added) {
@@ -67,7 +70,9 @@ export function catchAll(): Plugin {
             imports.push(`import m${i} from ${JSON.stringify(resolved.id)};`);
             routesByKey.push(`m${i}`);
             rou3Paths.forEach((route) => {
-              addRoute(router, "", route, `m${i}`);
+              methods.forEach((method) => {
+                addRoute(router, method, route, `m${i}`);
+              });
             });
             i += 1;
           }
@@ -101,7 +106,7 @@ function assertFetchable(mod) {
 export default {
   fetch(request) {
     const url = new URL(request.url);
-    const key = findRoute("", url.pathname);
+    const key = findRoute(request.method, url.pathname);
     if (!key || !key.data) return;
     return assertFetchable(__map[key.data]).fetch(request);
   }
