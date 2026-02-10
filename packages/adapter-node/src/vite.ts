@@ -1,5 +1,11 @@
 import { builtinModules } from "node:module";
-import { defaultClientConditions, defaultExternalConditions, defaultServerConditions, type Plugin } from "vite";
+import {
+  defaultClientConditions,
+  defaultExternalConditions,
+  defaultServerConditions,
+  type Environment,
+  type Plugin,
+} from "vite";
 
 // @ts-expect-error Bun global
 const isBun = typeof Bun !== "undefined";
@@ -7,8 +13,13 @@ const isBun = typeof Bun !== "undefined";
 const isDeno = typeof Deno !== "undefined";
 const re_photonNode = /^virtual:photon:node-entry$/;
 
+function findClientOutDir(env: Environment) {
+  const envs = Object.values(env.getTopLevelConfig().environments);
+  return envs.find((e) => e.consumer === "client")?.build.outDir;
+}
+
 // Creates a server and listens for connections in Node/Deno/Bun
-export function node(options?: { static?: string }): Plugin[] {
+export function node(options?: { static?: string | boolean }): Plugin[] {
   return [
     // Resolves virtual:photon:node-entry to its node runtime id
     {
@@ -36,9 +47,16 @@ export function node(options?: { static?: string }): Plugin[] {
           code: /__UD_STATIC__/,
         },
         handler(code) {
+          const outDir = findClientOutDir(this.environment);
           return code.replace(
             /__UD_STATIC__/g,
-            JSON.stringify(typeof options?.static === "string" ? options.static : false),
+            JSON.stringify(
+              typeof options?.static === "string" || typeof options?.static === "boolean"
+                ? options.static
+                : typeof outDir === "string"
+                  ? outDir
+                  : true,
+            ),
           );
         },
       },
