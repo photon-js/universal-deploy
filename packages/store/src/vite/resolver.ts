@@ -1,5 +1,5 @@
 import type { Environment, Plugin } from "vite";
-import { type EntryMeta, store } from "../index.js";
+import { type EntryMeta, getAllEntries } from "../index.js";
 
 export interface ResolverApi {
   /**
@@ -47,7 +47,7 @@ export function resolver(): Plugin<(env: Environment) => ResolverApi> {
 
     buildStart() {
       const entriesId = new Set<string>();
-      for (const e of Object.values(store.entries)) {
+      for (const e of getAllEntries()) {
         entriesId.add(e.id);
       }
       stateId.set(this.environment, entriesId);
@@ -72,7 +72,7 @@ export function resolver(): Plugin<(env: Environment) => ResolverApi> {
           });
 
           if (resolved) {
-            getApi(this.environment).addEntry(resolved.id, ...store.entries.filter((e) => e.id === id));
+            getApi(this.environment).addEntry(resolved.id, ...getAllEntries().filter((e) => e.id === id));
           }
 
           return resolved;

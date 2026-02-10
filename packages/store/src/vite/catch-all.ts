@@ -2,7 +2,7 @@ import { addRoute, createRouter } from "rou3";
 import { compileRouterToString } from "rou3/compiler";
 import type { Plugin } from "vite";
 import { catchAllId } from "../const.js";
-import { store } from "../index.js";
+import { getAllEntries } from "../index.js";
 
 // A virtual module aggregating all routes defined in the store. Can be overridden by plugins
 const re_catchAll = /^virtual:ud:catch-all$/;
@@ -34,24 +34,28 @@ export function catchAll(): Plugin {
         let i = 0;
         const seen = new Set<string>();
         const duplicates = new Set<string>();
-        for (const meta of store.entries.values()) {
+
+        for (const meta of getAllEntries()) {
           const resolved = await this.resolve(meta.id);
           if (!resolved) {
             throw new Error(`Failed to resolve ${meta.id}`);
           }
           if (seen.has(resolved.id)) {
+            // TODO addRoute for duplicates with different routes (and do not warn for those)
             duplicates.add(resolved.id);
           } else {
             seen.add(resolved.id);
             // FIXME testing with rou3 patterns for now, but this will need transformation from actual URLPatternInit
+            // TODO handle string[] and .method
             const rou3Path = meta.pattern as string;
             imports.push(`import m${i} from ${JSON.stringify(resolved.id)};`);
             routesByKey.push(`m${i}`);
-            addRoute(router, "", rou3Path, `m${i++}`);
+            addRoute(router, "", rou3Path, `m${i}`);
+            i += 1;
           }
         }
         if (duplicates.size > 0) {
-          console.warn(
+          this.warn(
             `\nDuplicate entries detected in virtual:ud:catch-all. \nDuplicates:\n - ${Array.from(duplicates.values()).join("\n - ")}`,
           );
         }

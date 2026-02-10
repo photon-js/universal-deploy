@@ -15,6 +15,7 @@
     "test:types": "tsc --noEmit"
   },
   "devDependencies": {
+    "@ryoppippi/unplugin-typia": "^2.6.5",
     "@types/node": "^22.19.3",
     "tsdown": "^0.20.1",
     "typescript": "^5.9.3",
@@ -26,7 +27,8 @@
   "dependencies": {
     "@universal-middleware/express": "^0.4.22",
     "magic-string": "^0.30.21",
-    "rou3": "^0.7.12"
+    "rou3": "^0.7.12",
+    "typia": "^11.0.3"
   },
   "files": [
     "dist/"

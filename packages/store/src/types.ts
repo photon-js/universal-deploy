@@ -40,3 +40,5 @@ interface URLPatternInit {
 type URLPatternInput = string | URLPatternInit;
 
 type HttpMethod = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";
+
+export type EntryTransformer = (entry: EntryMeta) => EntryMeta;
