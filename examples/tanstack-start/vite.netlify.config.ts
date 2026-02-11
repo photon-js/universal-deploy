@@ -4,7 +4,7 @@ import config from "./vite.common.config";
 config.plugins ??= [];
 // Enables building for Netlify (development and deploy builds).
 config.plugins.push(
-  // re-exports @netlify/vite-plugin, and sets rollupOptions.input to virtual:ud:catch-all
+  // re-exports @netlify/vite-plugin, and sets rolldownOptions.input to virtual:ud:catch-all
   netlify(),
 );
 

@@ -1,8 +1,6 @@
 import type { Plugin } from "vite";
-import { store } from "../index.js";
+import { addEntry } from "../index.js";
 import { dependsOn } from "../utils.js";
-
-let added = false;
 
 /**
  * Vite plugin that provides compatibility for resolving the SSR Rollup entry
@@ -14,12 +12,12 @@ let added = false;
  */
 export function compat(config?: { entry?: string }): Plugin {
   return {
-    name: "photon:rollup-ssr-entry-compat",
+    name: "ud:rollup-ssr-entry-compat",
 
     config: {
       handler(userConfig) {
-        if (added) return;
-        const input = userConfig.environments?.ssr?.build?.rollupOptions?.input;
+        const buildOptions = userConfig.environments?.ssr?.build;
+        const input = buildOptions?.rolldownOptions?.input ?? buildOptions?.rollupOptions?.input;
 
         const inputStr =
           typeof config?.entry === "string"
@@ -33,12 +31,10 @@ export function compat(config?: { entry?: string }): Plugin {
                   : undefined;
 
         if (!inputStr) return;
-        added = true;
 
-        store.entries.push({
+        addEntry({
           id: inputStr,
-          // FIXME change to URLPatternInit format
-          pattern: "/**",
+          route: "/**",
         });
       },
     },

@@ -4,6 +4,9 @@
   "compilerOptions": {
     "composite": true,
     "types": ["vite/client"],
-    "outDir": "./dist/"
+    "outDir": "./dist/",
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "strict": true
   }
 }

@@ -2,7 +2,7 @@ import createNetlifyPlugin, { type NetlifyPluginOptions } from "@netlify/vite-pl
 import { catchAllEntry } from "@universal-deploy/store";
 import type { Plugin } from "vite";
 
-const moduleId = "photon:netlify";
+const moduleId = "ud:netlify";
 
 export function netlify(config?: NetlifyPluginOptions): Plugin[] {
   return [
@@ -15,10 +15,11 @@ export function netlify(config?: NetlifyPluginOptions): Plugin[] {
         order: "post",
         handler(name, env) {
           if (env.consumer !== "server" && name !== "ssr") return;
+          const optionName = this.meta.rolldownVersion ? "rolldownOptions" : "rollupOptions";
 
           return {
             build: {
-              rollupOptions: {
+              [optionName]: {
                 input: {
                   index: catchAllEntry,
                 },

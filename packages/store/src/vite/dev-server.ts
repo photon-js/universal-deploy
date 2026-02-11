@@ -14,8 +14,10 @@ export function isFetchableDevEnvironment(environment: Environment): environment
 
 /**
  * Resolves catch-all entry and forwards incoming requests to its `fetch()` handler.
+ *
+ * @param environment which server-side environment to use. Defaults to `ssr`
  */
-export function devServer(): Plugin {
+export function devServer({ environment }: { environment?: string } = {}): Plugin {
   return {
     name: "universal-deploy:dev-server",
     apply(_config, { command, mode }) {
@@ -23,11 +25,18 @@ export function devServer(): Plugin {
     },
     configureServer(server) {
       return () => {
-        const ssr = server.environments.ssr;
+        const ssr = server.environments[environment ?? "ssr"];
+        if (!ssr) {
+          return this.error(`Cannot find environment "${environment}"`);
+        }
+        if (ssr.config.consumer !== "server") {
+          return this.error(`Cannot use environment "${environment}" (requires a server environment)`);
+        }
         let resolvedId: string | undefined;
 
         async function devMiddleware(request: Request) {
-          if (isRunnableDevEnvironment(ssr)) {
+          // biome-ignore lint/style/noNonNullAssertion: ok
+          if (isRunnableDevEnvironment(ssr!)) {
             if (!resolvedId) {
               const resolved = await ssr.pluginContainer.resolveId(catchAllEntry);
 
@@ -39,7 +48,8 @@ export function devServer(): Plugin {
             }
             const mod = await envImportFetchable(ssr, resolvedId);
             return mod.fetch(request);
-          } else if (isFetchableDevEnvironment(ssr)) {
+            // biome-ignore lint/style/noNonNullAssertion: ok
+          } else if (isFetchableDevEnvironment(ssr!)) {
             // TODO to be tested
             return ssr.dispatchFetch(request);
           }

@@ -42,9 +42,10 @@ export function awesomeFrameworkPlugin(): Plugin[] {
           };
         }
         if (name === "client") {
+          const optionName = this.meta.rolldownVersion ? "rolldownOptions" : "rollupOptions";
           return {
             build: {
-              rollupOptions: {
+              [optionName]: {
                 input: {
                   index: virtualIndex,
                 },
