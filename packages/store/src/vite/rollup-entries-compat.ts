@@ -12,7 +12,7 @@ import { dependsOn } from "../utils.js";
  */
 export function compat(config?: { entry?: string }): Plugin {
   return {
-    name: "photon:rollup-ssr-entry-compat",
+    name: "ud:rollup-ssr-entry-compat",
 
     config: {
       handler(userConfig) {

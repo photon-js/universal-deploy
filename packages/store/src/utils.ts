@@ -3,7 +3,7 @@ import { catchAllId } from "./const.js";
 
 export const pluginsUsage = {
   [catchAllId]: "@universal-deploy/store/vite",
-  "photon:resolver": "@universal-deploy/store/vite",
+  "ud:resolver": "@universal-deploy/store/vite",
 } as const;
 
 export function dependsOn(pluginName: keyof typeof pluginsUsage) {

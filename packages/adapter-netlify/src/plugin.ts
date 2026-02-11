@@ -2,7 +2,7 @@ import createNetlifyPlugin, { type NetlifyPluginOptions } from "@netlify/vite-pl
 import { catchAllEntry } from "@universal-deploy/store";
 import type { Plugin } from "vite";
 
-const moduleId = "photon:netlify";
+const moduleId = "ud:netlify";
 
 export function netlify(config?: NetlifyPluginOptions): Plugin[] {
   return [

@@ -11,7 +11,7 @@ import {
 const isBun = typeof Bun !== "undefined";
 // @ts-expect-error Deno global
 const isDeno = typeof Deno !== "undefined";
-const re_photonNode = /^virtual:photon:node-entry$/;
+const re_udNode = /^virtual:ud:node-entry$/;
 
 function findClientOutDir(env: Environment) {
   const envs = Object.values(env.getTopLevelConfig().environments);
@@ -21,14 +21,14 @@ function findClientOutDir(env: Environment) {
 // Creates a server and listens for connections in Node/Deno/Bun
 export function node(options?: { static?: string | boolean }): Plugin[] {
   return [
-    // Resolves virtual:photon:node-entry to its node runtime id
+    // Resolves virtual:ud:node-entry to its node runtime id
     {
-      name: "photon:node:node-entry",
+      name: "ud:node:entry",
       apply: "build",
 
       resolveId: {
         filter: {
-          id: re_photonNode,
+          id: re_udNode,
         },
         async handler(id, importer) {
           const resolved = await this.resolve("@universal-deploy/node/serve", importer);
@@ -63,22 +63,7 @@ export function node(options?: { static?: string | boolean }): Plugin[] {
     },
     // Bun and Deno conditions
     {
-      name: "photon:node:node-like",
-      configEnvironment(_name, config) {
-        const defaultCondition = config.consumer === "client" ? defaultClientConditions : defaultServerConditions;
-        const additionalCondition = isBun ? ["bun"] : isDeno ? ["deno"] : [];
-
-        return {
-          resolve: {
-            conditions: [...additionalCondition, ...defaultCondition],
-            externalConditions: [...additionalCondition, ...defaultExternalConditions],
-          },
-        };
-      },
-    },
-    // Bun and Deno conditions
-    {
-      name: "photon:node:node-like",
+      name: "ud:node:node-like",
       configEnvironment(_name, config) {
         const defaultCondition = config.consumer === "client" ? defaultClientConditions : defaultServerConditions;
         const additionalCondition = isBun ? ["bun"] : isDeno ? ["deno"] : [];
@@ -93,7 +78,7 @@ export function node(options?: { static?: string | boolean }): Plugin[] {
     },
     // Emit the node entry
     {
-      name: "photon:node:emit",
+      name: "ud:node:emit",
       apply: "build",
       config: {
         order: "post",
@@ -104,7 +89,7 @@ export function node(options?: { static?: string | boolean }): Plugin[] {
                 build: {
                   rollupOptions: {
                     input: {
-                      index: "virtual:photon:node-entry",
+                      index: "virtual:ud:node-entry",
                     },
                   },
                 },

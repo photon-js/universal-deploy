@@ -12,7 +12,7 @@ interface InternalResolverApi {
   addEntry(resolvedId: string, ...meta: EntryMeta[]): void;
 }
 
-const pluginName = "photon:resolver";
+const pluginName = "ud:resolver";
 
 /**
  * Keep track of resolved server entries

@@ -4,7 +4,7 @@ import { isServerEntry } from "./resolver.js";
 
 export function hmr(): Plugin {
   return {
-    name: "photon:hmr",
+    name: "ud:hmr",
     apply: "serve",
 
     async transform(code: string, id: string) {
