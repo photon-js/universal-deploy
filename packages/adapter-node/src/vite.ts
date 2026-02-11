@@ -83,11 +83,12 @@ export function node(options?: { static?: string | boolean }): Plugin[] {
       config: {
         order: "post",
         handler() {
+          const optionName = this.meta.rolldownVersion ? "rolldownOptions" : "rollupOptions";
           return {
             environments: {
               ssr: {
                 build: {
-                  rollupOptions: {
+                  [optionName]: {
                     input: {
                       index: "virtual:ud:node-entry",
                     },

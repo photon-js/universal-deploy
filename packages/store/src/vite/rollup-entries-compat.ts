@@ -16,7 +16,8 @@ export function compat(config?: { entry?: string }): Plugin {
 
     config: {
       handler(userConfig) {
-        const input = userConfig.environments?.ssr?.build?.rollupOptions?.input;
+        const buildOptions = userConfig.environments?.ssr?.build;
+        const input = buildOptions?.rolldownOptions?.input ?? buildOptions?.rollupOptions?.input;
 
         const inputStr =
           typeof config?.entry === "string"
