@@ -6,6 +6,9 @@ export function hmr(): Plugin {
   return {
     name: "ud:hmr",
     apply: "serve",
+    applyToEnvironment(env) {
+      return env.config.consumer === "server";
+    },
 
     async transform(code: string, id: string) {
       if (!isServerEntry(this.environment, id)) return;
