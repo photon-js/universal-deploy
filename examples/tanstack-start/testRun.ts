@@ -2,17 +2,21 @@ export { testRun };
 
 import { expect, fetchHtml, getServerUrl, page, run, sleep, test } from "@brillout/test-e2e";
 
-function testRun(cmd: `pnpm run ${string}`) {
+function testRun(cmd: `pnpm run ${string}`, options?: Parameters<typeof run>[1]) {
   run(cmd, {
     // Preview => builds app which takes a long time
     additionalTimeout: 120 * 1000,
     serverIsReadyMessage: "http://localhost:3000/",
-    tolerateError({ logText }) {
+    tolerateError(args) {
       // srvx
-      if (logText.includes("Shutting down server")) return true;
-      if (logText.includes("Server closed")) return true;
+      if (args.logText.includes("Shutting down server")) return true;
+      if (args.logText.includes("Server closed")) return true;
+      if (typeof options?.tolerateError === "function") {
+        return options.tolerateError(args);
+      }
       return;
     },
+    ...options,
   });
 
   test("page content is rendered to HTML", async () => {
