@@ -1,6 +1,5 @@
 /** biome-ignore-all lint/suspicious/noExplicitAny: globalThis cast */
 import type { EntryMeta, EntryTransformer, Store } from "./types.js";
-import { assertEntry } from "./validators.js";
 
 export type * from "./types.js";
 export const catchAllEntry = "virtual:ud:catch-all" as const;
@@ -22,7 +21,6 @@ function getTransformer(): EntryTransformer | undefined {
  * Add a Fetchable server entry to the store
  */
 export function addEntry(entry: EntryMeta) {
-  entry = assertEntry(entry);
   // We silently ignore exact duplicates, as vite config file can be imported multiple times
   const serializedEntry = JSON.stringify(entry);
   const store = getStore();

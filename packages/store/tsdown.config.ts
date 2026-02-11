@@ -1,4 +1,3 @@
-import UnpluginTypia from "@ryoppippi/unplugin-typia/rolldown";
 import { defineConfig, type UserConfig as TsdownOptions } from "tsdown";
 
 const commonOptions: TsdownOptions = {
@@ -15,7 +14,6 @@ export default defineConfig([
   {
     ...commonOptions,
     platform: "neutral",
-    plugins: [UnpluginTypia()],
     entry: {
       index: "./src/index.ts",
       vite: "./src/vite/index.ts",
