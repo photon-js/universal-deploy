@@ -2,7 +2,7 @@
 
 This package provides a global `addEntry` helper for registering server entries.
 ```js
-import { addEntry } from "@universal-deploy/store";
+import { addEntry, getAllEntries } from "@universal-deploy/store";
 
 // Registering — add entries to the store
 addEntry(
@@ -11,6 +11,9 @@ addEntry(
     route: "/api",
   },
 );
+
+// Retrieving
+const entries = getAllEntries();
 ```
 
 ### Entry Configuration

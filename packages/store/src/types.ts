@@ -4,11 +4,11 @@ export interface Store {
 
 export interface EntryMeta {
   /**
-   * Module id for this entry. Can be a filesystem path, or a virtual module.
+   * Module identifier for this entry. This can be a filesystem path or a virtual module.
    */
   id: string;
   /**
-   * If undefined, matches any HTTP method.
+   * HTTP method(s) to match. When omitted, matches all HTTP methods.
    */
   method?: HttpMethod | HttpMethod[];
   /**
@@ -18,7 +18,7 @@ export interface EntryMeta {
    */
   route: string | string[];
   /**
-   * The Vite environment this entry belongs to.
+   * The Vite environment for this entry.
    *
    * @default ssr
    */
