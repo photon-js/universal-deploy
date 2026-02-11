@@ -134,8 +134,8 @@ importers:
         specifier: ^8.0.0-beta.13
         version: 8.0.0-beta.13(@types/node@22.19.3)(esbuild@0.27.2)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)
       vite-plugin-vercel:
-        specifier: ^11.0.0-beta.11
-        version: 11.0.0-beta.11(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.7)(rollup@4.53.5)(srvx@0.9.8)(vite@8.0.0-beta.13(@types/node@22.19.3)(esbuild@0.27.2)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: ^11.0.0-beta.12
+        version: 11.0.0-beta.12(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.7)(rollup@4.53.5)(srvx@0.9.8)(vite@8.0.0-beta.13(@types/node@22.19.3)(esbuild@0.27.2)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
 
   examples/tanstack-start:
     dependencies:
@@ -219,8 +219,8 @@ importers:
         specifier: ^8.0.0-beta.13
         version: 8.0.0-beta.13(@types/node@22.19.3)(esbuild@0.27.2)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)
       vite-plugin-vercel:
-        specifier: ^11.0.0-beta.11
-        version: 11.0.0-beta.11(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.7)(rollup@4.53.5)(srvx@0.9.8)(vite@8.0.0-beta.13(@types/node@22.19.3)(esbuild@0.27.2)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: ^11.0.0-beta.12
+        version: 11.0.0-beta.12(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.7)(rollup@4.53.5)(srvx@0.9.8)(vite@8.0.0-beta.13(@types/node@22.19.3)(esbuild@0.27.2)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
       web-vitals:
         specifier: ^5.1.0
         version: 5.1.0
@@ -5182,8 +5182,8 @@ packages:
     resolution: {integrity: sha512-OljLrQ9SQdOUqTaQxqL5dEfZWrXExyyWsozYlAWFawPVNuD83igl7uJD2RTkNMbniIYgt8l81eCJGIdQF7avLQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  vite-plugin-vercel@11.0.0-beta.11:
-    resolution: {integrity: sha512-WMVvt6xnDlY0Hus7gaPFsN+/RkZiyARURbtjpY39rjAO3mHbqj0TX3kJn0k22DaO1RuU28M29tsPf0OAzBb4ag==}
+  vite-plugin-vercel@11.0.0-beta.12:
+    resolution: {integrity: sha512-cv5msPfE4PLq8PrzwtqEVZy6i932crn/R3tGX+lOEFQtsIMS/MJP/bmQwB2tSYntldGNYSBaZ8T9IuhzCoTdhA==}
     peerDependencies:
       vite: '>=7.1'
 
@@ -10198,7 +10198,7 @@ snapshots:
 
   validate-npm-package-name@5.0.1: {}
 
-  vite-plugin-vercel@11.0.0-beta.11(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.7)(rollup@4.53.5)(srvx@0.9.8)(vite@8.0.0-beta.13(@types/node@22.19.3)(esbuild@0.27.2)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)):
+  vite-plugin-vercel@11.0.0-beta.12(@cloudflare/workers-types@4.20251217.0)(h3@1.15.4)(hono@4.11.7)(rollup@4.53.5)(srvx@0.9.8)(vite@8.0.0-beta.13(@types/node@22.19.3)(esbuild@0.27.2)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)):
     dependencies:
       '@manypkg/find-root': 3.1.0
       '@universal-deploy/store': link:packages/store
