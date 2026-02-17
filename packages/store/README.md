@@ -1,16 +1,19 @@
 ## @universal-deploy/store
 
-This package provides a global `store` object for registering server entries.
+This package provides a global `addEntry` helper for registering server entries.
 ```js
-import { store } from "@universal-deploy/store";
+import { addEntry, getAllEntries } from "@universal-deploy/store";
 
 // Registering — add entries to the store
-store.entries.push(
+addEntry(
   {
-    id: "./src/server/api.ts",
-    pattern: "/api",
+    id: "./src/server/api.ts",  
+    route: "/api",
   },
 );
+
+// Retrieving
+const entries = getAllEntries();
 ```
 
 ### Entry Configuration
@@ -27,11 +30,11 @@ export interface EntryMeta {
    */
   method?: HttpMethod | HttpMethod[];
   /**
-   * Route pattern(s) to match for this entry.
+   * Route pattern(s) for this entry.
    *
-   * Uses the {@link https://developer.mozilla.org/en-US/docs/Web/API/URLPattern | URLPattern API} syntax.
+   * Should be a valid {@link https://github.com/h3js/rou3 | rou3} pattern.
    */
-  pattern: URLPatternInput | URLPatternInput[];
+  route: string | string[];
   /**
    * The Vite environment for this entry.
    *
@@ -49,8 +52,16 @@ Creates a `virtual:ud:catch-all` entry that aggregates all store entries and han
 
 #### `devServer`
 
-Adds development middleware that invokes the catch-all entry, applies `transformIndexHtml` transformations when needed, and returns the response to the client.
+Adds development middleware that invokes the catch-all entry and returns the response to the client.
 
 #### `compat`
 
 Provides compatibility for resolving SSR Rollup entries and automatically registers them in the global store.
+
+#### `hmr`
+
+Define route boundaries on server entries.
+
+#### `resolver`
+
+Keeps a mapping between unresolved and resolved module ids. Provides `isServerEntry` helper to query this mapping.

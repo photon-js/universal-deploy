@@ -4,39 +4,27 @@ export interface Store {
 
 export interface EntryMeta {
   /**
-   * Module id for this entry. Can be a filesystem path, or a virtual module.
+   * Module identifier for this entry. This can be a filesystem path or a virtual module.
    */
   id: string;
   /**
-   * If undefined, matches any HTTP method.
+   * HTTP method(s) to match. When omitted, matches all HTTP methods.
    */
   method?: HttpMethod | HttpMethod[];
   /**
    * Route pattern(s) for this entry.
    *
-   * Adheres to the {@link https://developer.mozilla.org/en-US/docs/Web/API/URLPattern | URLPattern API}.
+   * Should be a valid {@link https://github.com/h3js/rou3 | rou3} pattern.
    */
-  pattern: URLPatternInput | URLPatternInput[];
+  route: string | string[];
   /**
-   * The Vite environment this entry belongs to.
+   * The Vite environment for this entry.
    *
    * @default ssr
    */
   environment?: string;
 }
 
-interface URLPatternInit {
-  protocol?: string;
-  username?: string;
-  password?: string;
-  hostname?: string;
-  port?: string;
-  pathname?: string;
-  search?: string;
-  hash?: string;
-  baseURL?: string;
-}
-
-type URLPatternInput = string | URLPatternInit;
-
 type HttpMethod = "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "CONNECT" | "OPTIONS" | "TRACE" | "PATCH";
+
+export type EntryTransformer = (entry: EntryMeta, index: number) => EntryMeta;

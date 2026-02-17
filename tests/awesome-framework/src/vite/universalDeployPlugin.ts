@@ -1,4 +1,4 @@
-import { store } from "@universal-deploy/store";
+import { addEntry } from "@universal-deploy/store";
 import { catchAll, devServer } from "@universal-deploy/store/vite";
 import type { Plugin } from "vite";
 import type { Options } from "./types.js";
@@ -16,19 +16,18 @@ export function universalDeployPlugin(options?: Options): Plugin[] {
           if (injected) return;
           injected = true;
           // Declaring server entries through @universal-deploy/store
-          store.entries.push(
-            {
-              id: "awesome-framework/api",
-              pattern: "/api",
-            },
-            {
-              id: "awesome-framework/ssr",
-              // FIXME rou3 pattern for POC, should later be updated to URLPatternInit
-              pattern: "/**",
-            },
-          );
+          addEntry({
+            id: "awesome-framework/api",
+            route: "/api",
+          });
+          addEntry({
+            id: "awesome-framework/ssr",
+            route: "/**",
+          });
           if (options?.additionalEntries) {
-            store.entries.push(...options.additionalEntries);
+            options.additionalEntries.forEach((e) => {
+              addEntry(e);
+            });
           }
         },
       },

@@ -22,11 +22,11 @@ This POC demonstrates that we can solve this issue with a minimal API.
 [`@universal-deploy/store`](./packages/store) provides a global registry for server entries with routing:
 
 ```js
-import { store } from "@universal-deploy/store";
+import { addEntry } from "@universal-deploy/store";
 
-store.entries.push({
+addEntry({
   id: "./src/server/api.ts",
-  pattern: "/api/*",
+  route: "/api/*",
   method: "GET",
 });
 ```
@@ -57,13 +57,13 @@ Already compatible:
 ## Usage
 ### Framework authors
 
-[Call `store.entries.push`](https://github.com/photon-js/universal-deploy/blob/83ed1ffea2d0d552f6883f12677cf0091ac027d7/tests/awesome-framework/src/vite/universalDeployPlugin.ts#L18) at any point, preferably before `configResolved` hooks.
+[Call `addEntry`](https://github.com/photon-js/universal-deploy/blob/f1395bc6c0b4854ece54b8ef6bf42b18ed3ffbf6/tests/awesome-framework/src/vite/universalDeployPlugin.ts#L19) at any point, preferably before `configResolved` hooks.
 
 ### Deployment plugin authors
 
-For deployment providers requiring a unique server entry, the easiest way is to [set `rollupOptions.input` to `catchAllEntry`](https://github.com/photon-js/universal-deploy/blob/83ed1ffea2d0d552f6883f12677cf0091ac027d7/packages/adapter-netlify/src/plugin.ts#L23). This virtual entry will be resolved by the [`catchAll`](./packages/store/src/vite/catch-all.ts) plugin.
+For deployment providers requiring a unique server entry, the easiest way is to [set `rolldownOptions.input` to `catchAllEntry`](https://github.com/photon-js/universal-deploy/blob/50cd8eec4086ca45698d70f79195114628a74658/packages/adapter-netlify/src/plugin.ts#L22). This virtual entry will be resolved by the [`catchAll`](./packages/store/src/vite/catch-all.ts) plugin.
 
-For deployment providers with support for multiple server entries, [read `store.entries`](https://github.com/magne4000/vite-plugin-vercel/blob/a7fe4da0bbb68a4eca4f064d6296f703db7e0d3d/packages/vite-plugin-vercel/src/plugins/loader.ts#L92-L102) in a `post` `configEnvironment` hook and set `rollupOptions.input`.
+For deployment providers with support for multiple server entries, [use `getAllEntries`](https://github.com/photon-js/universal-deploy/blob/966993932f2dc98bfc0a6f75ae7a6e9d55ab3f2d/packages/store/src/index.ts#L36) in a `post` `configEnvironment` hook and set `rolldownOptions.input`.
 
 > [!NOTE]
 > [`this.emitFile`](https://rollupjs.org/plugin-development/#this-emitfile) can also be used at later stages to achieve the same result.
