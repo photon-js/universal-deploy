@@ -1,5 +1,16 @@
 # @universal-deploy/node
 
+## 0.1.0
+
+### Minor Changes
+
+- 901b774: Add helpers to interact with the global store
+
+### Patch Changes
+
+- Updated dependencies [901b774]
+  - @universal-deploy/store@0.1.0
+
 ## 0.0.3
 
 ### Patch Changes
