@@ -1,5 +1,6 @@
 import { builtinModules } from "node:module";
 import {
+  type BuildEnvironmentOptions,
   defaultClientConditions,
   defaultExternalConditions,
   defaultServerConditions,
@@ -19,7 +20,7 @@ function findClientOutDir(env: Environment) {
 }
 
 // Creates a server and listens for connections in Node/Deno/Bun
-export function node(options?: { static?: string | boolean }): Plugin[] {
+export function node(options?: { static?: string | boolean; importer?: string }): Plugin[] {
   return [
     // Resolves virtual:ud:node-entry to its node runtime id
     {
@@ -31,7 +32,13 @@ export function node(options?: { static?: string | boolean }): Plugin[] {
           id: re_udNode,
         },
         async handler(id, importer) {
-          const resolved = await this.resolve("@universal-deploy/node/serve", importer);
+          let importerResolvedId: string | undefined;
+          if (options?.importer) {
+            const importerResolved = await this.resolve(options.importer);
+            importerResolvedId = importerResolved?.id;
+          }
+
+          const resolved = await this.resolve("@universal-deploy/node/serve", importerResolvedId ?? importer);
           if (!resolved) {
             throw new Error(`Cannot find server entry ${JSON.stringify(id)}`);
           }
@@ -83,16 +90,41 @@ export function node(options?: { static?: string | boolean }): Plugin[] {
       config: {
         order: "post",
         handler() {
-          const optionName = this.meta.rolldownVersion ? "rolldownOptions" : "rollupOptions";
+          const buildEnvOptions: BuildEnvironmentOptions = {};
+          if (this.meta.rolldownVersion) {
+            buildEnvOptions.rolldownOptions = {
+              input: {
+                index: "virtual:ud:node-entry",
+              },
+              output: {
+                // Avoids circular references when using dynamic imports
+                codeSplitting: {
+                  groups: [{ name: "srvx", test: /node_modules[\\/]srvx/ }],
+                },
+              },
+            };
+          } else {
+            buildEnvOptions.rollupOptions = {
+              input: {
+                index: "virtual:ud:node-entry",
+              },
+              output: {
+                manualChunks(id) {
+                  if (/node_modules[\\/]srvx/.test(id)) {
+                    return "srvx";
+                  }
+
+                  return null;
+                },
+              },
+            };
+          }
+
           return {
             environments: {
               ssr: {
                 build: {
-                  [optionName]: {
-                    input: {
-                      index: "virtual:ud:node-entry",
-                    },
-                  },
+                  ...buildEnvOptions,
                 },
                 resolve: {
                   // Do not mark import("@universal-deploy/node/server") as external as it contains a virtual module
