@@ -19,7 +19,7 @@ function findClientOutDir(env: Environment) {
 }
 
 // Creates a server and listens for connections in Node/Deno/Bun
-export function node(options?: { static?: string | boolean }): Plugin[] {
+export function node(options?: { static?: string | boolean; importer?: string }): Plugin[] {
   return [
     // Resolves virtual:ud:node-entry to its node runtime id
     {
@@ -31,7 +31,7 @@ export function node(options?: { static?: string | boolean }): Plugin[] {
           id: re_udNode,
         },
         async handler(id, importer) {
-          const resolved = await this.resolve("@universal-deploy/node/serve", importer);
+          const resolved = await this.resolve("@universal-deploy/node/serve", options?.importer ?? importer);
           if (!resolved) {
             throw new Error(`Cannot find server entry ${JSON.stringify(id)}`);
           }
