@@ -1,5 +1,6 @@
 import { builtinModules } from "node:module";
 import {
+  type BuildEnvironmentOptions,
   defaultClientConditions,
   defaultExternalConditions,
   defaultServerConditions,
@@ -89,16 +90,41 @@ export function node(options?: { static?: string | boolean; importer?: string })
       config: {
         order: "post",
         handler() {
-          const optionName = this.meta.rolldownVersion ? "rolldownOptions" : "rollupOptions";
+          const buildEnvOptions: BuildEnvironmentOptions = {};
+          if (this.meta.rolldownVersion) {
+            buildEnvOptions.rolldownOptions = {
+              input: {
+                index: "virtual:ud:node-entry",
+              },
+              output: {
+                // Avoids circular references when using dynamic imports
+                codeSplitting: {
+                  groups: [{ name: "srvx", test: /node_modules[\\/]srvx/ }],
+                },
+              },
+            };
+          } else {
+            buildEnvOptions.rollupOptions = {
+              input: {
+                index: "virtual:ud:node-entry",
+              },
+              output: {
+                manualChunks(id) {
+                  if (/node_modules[\\/]srvx/.test(id)) {
+                    return "srvx";
+                  }
+
+                  return null;
+                },
+              },
+            };
+          }
+
           return {
             environments: {
               ssr: {
                 build: {
-                  [optionName]: {
-                    input: {
-                      index: "virtual:ud:node-entry",
-                    },
-                  },
+                  ...buildEnvOptions,
                 },
                 resolve: {
                   // Do not mark import("@universal-deploy/node/server") as external as it contains a virtual module
