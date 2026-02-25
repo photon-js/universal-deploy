@@ -31,7 +31,13 @@ export function node(options?: { static?: string | boolean; importer?: string })
           id: re_udNode,
         },
         async handler(id, importer) {
-          const resolved = await this.resolve("@universal-deploy/node/serve", options?.importer ?? importer);
+          let importerResolvedId: string | undefined;
+          if (options?.importer) {
+            const importerResolved = await this.resolve(options.importer);
+            importerResolvedId = importerResolved?.id;
+          }
+
+          const resolved = await this.resolve("@universal-deploy/node/serve", importerResolvedId ?? importer);
           if (!resolved) {
             throw new Error(`Cannot find server entry ${JSON.stringify(id)}`);
           }
