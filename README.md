@@ -8,7 +8,7 @@ The goal of the Universal Deploy project is to enable any Vite app (vanilla Vite
 
 **Zero-config**
 
-The only thing the user needs to do is add a deployment Vite plugin (`@netlify/vite-plugin`/`@cloudflare/vite-plugin`/`vite-plugin-vercel`/`@edgeone/vite`/...) to `vite.config.js`. That's it.
+The user just adds a deployment Vite plugin (`@netlify/vite-plugin`/`@cloudflare/vite-plugin`/`vite-plugin-vercel`/`@edgeone/vite`/...) to `vite.config.js` — that's it. Deployment Vite plugins deeply integrate in a zero-config and seamless fashion.
 
 ## Approach
 
