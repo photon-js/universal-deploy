@@ -12,7 +12,7 @@ Framework developers primarily interact with `@universal-deploy/store`.
 
 A server entry is any module that should handle server-side requests (SSR, API routes, middleware). You register entries using `addEntry`.
 
-It's a de-facto standard that server entries should respect the `Fetchable` interface.
+It's recommended that server entries follow the `Fetchable` interface, which is becoming a de-facto standard for server-side handlers.
 
 ```ts
 // Fetchable interface
