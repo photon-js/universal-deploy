@@ -15,7 +15,7 @@ jobs:
       - name: Setup Deno
         uses: denoland/setup-deno@v2
         with:
-          deno-version: '2.6.2'
+          deno-version: '2.7.4'
       - run: deno run build
         working-directory: examples/app-node
       - name: Test e2e
