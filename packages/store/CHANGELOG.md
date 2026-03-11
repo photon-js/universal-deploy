@@ -1,5 +1,11 @@
 # @universal-deploy/store
 
+## 0.2.0
+
+### Minor Changes
+
+- 8b797e9: feat: @universal-deploy/vite package
+
 ## 0.1.4
 
 ### Patch Changes
