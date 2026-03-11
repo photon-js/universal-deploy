@@ -13,7 +13,7 @@
     "playwright": "^1.57.0",
     "typescript": "^5.9.3",
     "vite": "^8.0.0-beta.18",
-    "vite-plugin-vercel": "^11.0.0-beta.21"
+    "vite-plugin-vercel": "^11.0.0-beta.23"
   },
   "dependencies": {
     "@universal-middleware/core": "^0.4.17",

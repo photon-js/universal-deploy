@@ -6,6 +6,9 @@ settings:
 
 overrides:
   '@types/node': ^22.19.15
+  '@universal-deploy/store': workspace:^
+  '@universal-deploy/vite': workspace:^
+  '@universal-deploy/node': workspace:^
 
 importers:
 
@@ -133,8 +136,8 @@ importers:
         specifier: ^8.0.0-beta.18
         version: 8.0.0-beta.18(@types/node@22.19.15)(esbuild@0.27.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)
       vite-plugin-vercel:
-        specifier: ^11.0.0-beta.21
-        version: 11.0.0-beta.21(hono@4.12.5)(rollup@4.53.5)(srvx@0.9.8)(vite@8.0.0-beta.18(@types/node@22.19.15)(esbuild@0.27.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: ^11.0.0-beta.23
+        version: 11.0.0-beta.23(hono@4.12.5)(rollup@4.53.5)(srvx@0.9.8)(vite@8.0.0-beta.18(@types/node@22.19.15)(esbuild@0.27.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
 
   examples/tanstack-start:
     dependencies:
@@ -221,8 +224,8 @@ importers:
         specifier: ^8.0.0-beta.18
         version: 8.0.0-beta.18(@types/node@22.19.15)(esbuild@0.27.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)
       vite-plugin-vercel:
-        specifier: ^11.0.0-beta.21
-        version: 11.0.0-beta.21(hono@4.12.5)(rollup@4.53.5)(srvx@0.9.8)(vite@8.0.0-beta.18(@types/node@22.19.15)(esbuild@0.27.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
+        specifier: ^11.0.0-beta.23
+        version: 11.0.0-beta.23(hono@4.12.5)(rollup@4.53.5)(srvx@0.9.8)(vite@8.0.0-beta.18(@types/node@22.19.15)(esbuild@0.27.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
       web-vitals:
         specifier: ^5.1.0
         version: 5.1.0
@@ -2574,11 +2577,6 @@ packages:
   '@typescript-eslint/visitor-keys@8.50.0':
     resolution: {integrity: sha512-Xzmnb58+Db78gT/CCj/PVCvK+zxbnsw6F+O1oheYszJbBSdEjVhQi3C/Xttzxgi/GLmpvOggRs1RFpiJ8+c34Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@universal-deploy/store@0.1.4':
-    resolution: {integrity: sha512-CnBrQKT239MKjAPusQRpByRk2agnkpF1sXnF4VBvDXP6FzRg5UFxz1CSdtLCcEMiUskBkBDaBw39qZM8L+W8qQ==}
-    peerDependencies:
-      vite: ^8.0.0-beta.13
 
   '@universal-middleware/core@0.4.17':
     resolution: {integrity: sha512-q+/nXW9DQ94RtmlghC57DhwEvjrqxX57EtU40iaM3U+eYTKc+FVnEdlpdrYX8kCAdEU7zVBLBlFgJre+VrXoUg==}
@@ -5304,8 +5302,8 @@ packages:
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
 
-  vite-plugin-vercel@11.0.0-beta.21:
-    resolution: {integrity: sha512-YoWt3JNXITz+VAgGCBGm+Pw1hhl0n+EkitpEihyAyZStQlh51aatMMUhxmNVgcqgw6WDiv2greotKpjig4g47g==}
+  vite-plugin-vercel@11.0.0-beta.23:
+    resolution: {integrity: sha512-GflgjRqmelQCdQ5c1RGPRWRHM25ZLaA8AyfxD4zeLuiPJ8cYMt9TWjw/bVT5ec5OjqH/00i+kZOBmLvcARRXZg==}
     peerDependencies:
       vite: '>=7.1'
 
@@ -7782,23 +7780,6 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.50.0
       eslint-visitor-keys: 4.2.1
-
-  '@universal-deploy/store@0.1.4(hono@4.12.5)(srvx@0.9.8)(vite@8.0.0-beta.18(@types/node@22.19.15)(esbuild@0.27.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))':
-    dependencies:
-      '@universal-middleware/express': 0.4.26(hono@4.12.5)(srvx@0.9.8)
-      magic-string: 0.30.21
-      rou3: 0.8.1
-      vite: 8.0.0-beta.18(@types/node@22.19.15)(esbuild@0.27.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)
-    transitivePeerDependencies:
-      - '@cloudflare/workers-types'
-      - '@hattip/core'
-      - '@types/express'
-      - '@webroute/route'
-      - elysia
-      - fastify
-      - h3
-      - hono
-      - srvx
 
   '@universal-middleware/core@0.4.17(hono@4.12.5)(srvx@0.11.9)':
     dependencies:
@@ -10605,10 +10586,11 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-vercel@11.0.0-beta.21(hono@4.12.5)(rollup@4.53.5)(srvx@0.9.8)(vite@8.0.0-beta.18(@types/node@22.19.15)(esbuild@0.27.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)):
+  vite-plugin-vercel@11.0.0-beta.23(hono@4.12.5)(rollup@4.53.5)(srvx@0.9.8)(vite@8.0.0-beta.18(@types/node@22.19.15)(esbuild@0.27.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2)):
     dependencies:
       '@manypkg/find-root': 3.1.0
-      '@universal-deploy/store': 0.1.4(hono@4.12.5)(srvx@0.9.8)(vite@8.0.0-beta.18(@types/node@22.19.15)(esbuild@0.27.3)(jiti@2.6.1)(tsx@4.21.0)(yaml@2.8.2))
+      '@universal-deploy/store': link:packages/store
+      '@universal-deploy/vite': link:packages/vite
       '@universal-middleware/core': 0.4.17(hono@4.12.5)(srvx@0.9.8)
       '@universal-middleware/vercel': 0.4.29(hono@4.12.5)(srvx@0.9.8)
       '@vercel/build-utils': 13.2.4
