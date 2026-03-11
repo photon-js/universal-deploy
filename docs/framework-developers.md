@@ -12,6 +12,28 @@ Framework developers primarily interact with `@universal-deploy/store`.
 
 A server entry is any module that should handle server-side requests (SSR, API routes, middleware). You register entries using `addEntry`.
 
+It's a de-facto standard that server entries should respect the `Fetchable` interface.
+
+```ts
+// Fetchable interface
+export interface Fetchable {
+  fetch: (request: Request) => Response | Promise<Response>;
+}
+```
+
+Example of a server entry implementation:
+
+```ts
+// awesome-framework/server/render.ts
+export default {
+  fetch(request: Request) {
+    return new Response("Hello from Universal Deploy!");
+  },
+};
+```
+
+You register these entries in the global store:
+
 ```ts
 import { addEntry } from "@universal-deploy/store";
 
@@ -19,13 +41,6 @@ import { addEntry } from "@universal-deploy/store";
 addEntry({
   id: "awesome-framework/server/render.ts",
   route: "/**", // Match all routes
-});
-
-// A specific API route
-addEntry({
-  id: "awesome-framework/server/api/user.ts",
-  route: "/api/user",
-  method: "GET",
 });
 ```
 
