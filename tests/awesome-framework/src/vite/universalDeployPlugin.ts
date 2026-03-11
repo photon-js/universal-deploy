@@ -32,10 +32,6 @@ export function universalDeployPlugin(options?: Options): Plugin[] {
         },
       },
     },
-    ...universalDeploy({
-      node: {
-        importer: "awesome-framework",
-      },
-    }),
+    ...universalDeploy(),
   ];
 }

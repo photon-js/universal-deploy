@@ -1,4 +1,4 @@
-import { builtinModules } from "node:module";
+import { builtinModules, createRequire } from "node:module";
 import {
   type BuildEnvironmentOptions,
   defaultClientConditions,
@@ -40,7 +40,17 @@ export function node(options?: { static?: string | boolean; importer?: string })
 
           const resolved = await this.resolve("@universal-deploy/node/serve", importerResolvedId ?? importer);
           if (!resolved) {
-            throw new Error(`Cannot find server entry ${JSON.stringify(id)}`);
+            try {
+              // Use node resolution to find a sub dependency
+              const require = createRequire(import.meta.url);
+              const entry = require.resolve("@universal-deploy/node/serve");
+
+              return {
+                id: entry,
+              };
+            } catch {
+              throw new Error(`Cannot find server entry ${JSON.stringify(id)}`);
+            }
           }
 
           return {
