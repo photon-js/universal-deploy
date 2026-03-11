@@ -10,15 +10,15 @@ pnpm add -D @universal-deploy/vite
 
 ### Usage
 
-Add the `auto` plugin to your `vite.config.ts`:
+Add the `universalDeploy` plugin to your `vite.config.ts`:
 
 ```ts
-import { auto } from "@universal-deploy/vite";
+import universalDeploy from "@universal-deploy/vite";
 import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [
-    auto(),
+    universalDeploy(),
     // ... other plugins
   ],
 });
@@ -26,7 +26,7 @@ export default defineConfig({
 
 ### How it works
 
-The `auto()` plugin detects the presence of other deployment adapters in your Vite configuration. If any of the following plugins are found, it automatically disables its own Node.js adapter injection:
+The `universalDeploy()` (aliased from `auto()`) plugin detects the presence of other deployment adapters in your Vite configuration. If any of the following plugins are found, it automatically disables its own Node.js adapter injection:
 
 - `vite-plugin-vercel`
 - `@cloudflare/vite-plugin`
@@ -36,7 +36,7 @@ If none of these are present, it enables `@universal-deploy/node` to provide a d
 
 ### Options
 
-The `auto()` plugin accepts the following options:
+The `universalDeploy()` plugin accepts the following options:
 
 - `node`: Same options as the `@universal-deploy/node` adapter:
     - `static`: (string | boolean) The directory containing static assets. Defaults to the client output directory.

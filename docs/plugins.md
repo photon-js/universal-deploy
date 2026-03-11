@@ -18,4 +18,4 @@ This plugin is required when using `devServer()`, but it's also invaluable for d
 
 ## `compat()`
 
-The `compat` plugin (available at `@universal-deploy/store/src/vite/rollup-entries-compat.ts`) automatically registers SSR rollup entries in the store. This is primarily used for Vite-based frameworks that have not yet natively adopted the `universal-deploy` standard.
+The `compat` plugin (available at `@universal-deploy/vite`) automatically registers SSR rollup entries in the store. This is primarily used for Vite-based frameworks that have not yet natively adopted the `universal-deploy` standard.

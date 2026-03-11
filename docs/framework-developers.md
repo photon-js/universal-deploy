@@ -58,7 +58,7 @@ addEntry({
 It's recommended to create a Vite plugin for your framework that registers these entries. Use the `config` hook with `order: "pre"` to ensure entries are registered early.
 
 ```ts
-import { auto } from "@universal-deploy/vite";
+import universalDeploy from "@universal-deploy/vite";
 import { addEntry } from "@universal-deploy/store";
 import type { Plugin } from "vite";
 
@@ -84,7 +84,7 @@ export function myFrameworkPlugin(): Plugin[] {
     },
     // Automatically enables Node.js adapter if no other target (Netlify, Vercel, etc.) is detected
     // It also includes devServer() and catchAll() plugins.
-    auto({
+    universalDeploy({
       node: {
         // node adapter options
       }
@@ -93,19 +93,19 @@ export function myFrameworkPlugin(): Plugin[] {
 }
 ```
 
-#### The `auto()` plugin
+#### The `universalDeploy()` plugin
 
 The `@universal-deploy/vite` package provides a plugin that automatically defaults your framework to a Node.js-compatible server build when no other deployment target is present in the Vite configuration.
 
 This is highly recommended for framework developers as it provides a "zero-config" default:
-- If a user adds a deployment plugin (like `vite-plugin-vercel`), the `auto()` plugin will detect it and disable its own Node.js adapter injection.
-- If the user doesn't add any deployment plugin, `auto()` will enable `@universal-deploy/node` automatically, ensuring the project is buildable and runnable in Node.js/Bun/Deno out-of-the-box.
+- If a user adds a deployment plugin (like `vite-plugin-vercel`), the `universalDeploy()` plugin will detect it and disable its own Node.js adapter injection.
+- If the user doesn't add any deployment plugin, `universalDeploy()` will enable `@universal-deploy/node` automatically, ensuring the project is buildable and runnable in Node.js/Bun/Deno out-of-the-box.
 
-The `auto()` plugin includes `devServer()` and `catchAll()`, so you don't need to add them separately.
+The `universalDeploy()` plugin includes `devServer()` and `catchAll()`, so you don't need to add them separately.
 
 #### Advanced Plugins
 
-The `auto()` plugin includes `devServer()` and `catchAll()` by default, which is sufficient for most use cases. If you need to use these plugins individually or require more granular control, see the [Plugins documentation](./plugins.md).
+The `universalDeploy()` plugin includes `devServer()` and `catchAll()` by default, which is sufficient for most use cases. If you need to use these plugins individually or require more granular control, see the [Plugins documentation](./plugins.md).
 
 ### 3. Development Mode Support
 
