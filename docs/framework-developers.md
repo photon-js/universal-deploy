@@ -12,6 +12,28 @@ Framework developers primarily interact with `@universal-deploy/store`.
 
 A server entry is any module that should handle server-side requests (SSR, API routes, middleware). You register entries using `addEntry`.
 
+It's recommended that server entries follow the `Fetchable` interface, which is becoming a de-facto standard for server-side handlers.
+
+```ts
+// Fetchable interface
+export interface Fetchable {
+  fetch: (request: Request) => Response | Promise<Response>;
+}
+```
+
+Example of a server entry implementation:
+
+```ts
+// awesome-framework/server/render.ts
+export default {
+  fetch(request: Request) {
+    return new Response("Hello from Universal Deploy!");
+  },
+};
+```
+
+You register these entries in the global store:
+
 ```ts
 import { addEntry } from "@universal-deploy/store";
 
@@ -19,13 +41,6 @@ import { addEntry } from "@universal-deploy/store";
 addEntry({
   id: "awesome-framework/server/render.ts",
   route: "/**", // Match all routes
-});
-
-// A specific API route
-addEntry({
-  id: "awesome-framework/server/api/user.ts",
-  route: "/api/user",
-  method: "GET",
 });
 ```
 
@@ -43,8 +58,8 @@ addEntry({
 It's recommended to create a Vite plugin for your framework that registers these entries. Use the `config` hook with `order: "pre"` to ensure entries are registered early.
 
 ```ts
+import { auto } from "@universal-deploy/auto/vite";
 import { addEntry } from "@universal-deploy/store";
-import { catchAll, devServer } from "@universal-deploy/store/vite";
 import type { Plugin } from "vite";
 
 export function myFrameworkPlugin(): Plugin[] {
@@ -67,13 +82,26 @@ export function myFrameworkPlugin(): Plugin[] {
         },
       },
     },
-    // Enables request routing during development
-    devServer(),
-    // Aggregates all global store entries behind a unique entry (required by devServer)
-    catchAll(),
+    // Automatically enables Node.js adapter if no other target (Netlify, Vercel, etc.) is detected
+    // It also includes devServer() and catchAll() plugins.
+    auto({
+      node: {
+        // node adapter options
+      }
+    }),
   ];
 }
 ```
+
+#### The `auto()` plugin
+
+The `@universal-deploy/auto` package provides a plugin that automatically defaults your framework to a Node.js-compatible server build when no other deployment target is present in the Vite configuration.
+
+This is highly recommended for framework developers as it provides a "zero-config" default:
+- If a user adds a deployment plugin (like `vite-plugin-vercel`), the `auto()` plugin will detect it and disable its own Node.js adapter injection.
+- If the user doesn't add any deployment plugin, `auto()` will enable `@universal-deploy/node` automatically, ensuring the project is buildable and runnable in Node.js/Bun/Deno out-of-the-box.
+
+The `auto()` plugin includes `devServer()` and `catchAll()`, so you don't need to add them separately.
 
 #### The `devServer` and `catchAll` Plugins
 

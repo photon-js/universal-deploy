@@ -31,6 +31,12 @@
           "react": "recommended"
         }
       }
+    },
+    {
+      "includes": ["examples/tanstack-start/**"],
+      "linter": {
+        "enabled": false
+      }
     }
   ]
 }
