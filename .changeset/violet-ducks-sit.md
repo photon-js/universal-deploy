@@ -4,4 +4,4 @@
 "@universal-deploy/node": patch
 ---
 
-feat: @universal/vite package
+feat: @universal-deploy/vite package
