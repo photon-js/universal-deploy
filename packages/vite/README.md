@@ -24,6 +24,8 @@ export default defineConfig({
 });
 ```
 
+Are you a framework developer? Read the [Framework Developer Guide](../../docs/framework-developers.md) to learn how to integrate `@universal-deploy/vite` into your framework.
+
 ### How it works
 
 The `universalDeploy()` plugin detects the presence of other deployment adapters in your Vite configuration. If any of the following plugins are found, it automatically disables its own Node.js adapter injection:
